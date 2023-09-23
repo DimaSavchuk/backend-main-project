@@ -14,7 +14,7 @@ const removeRecipeById = async (req, res) => {
     }
     res.json({
         code: 200,
-        message: 'success',
+        message: 'Success operation',
         data: result,
     })
 };

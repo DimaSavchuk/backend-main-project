@@ -1,4 +1,5 @@
 const { recipesModel } = require('../../models/recipesModel');
+const  HttpError = require('../../helpers/HttpError');
 
 const getMainPage = async (req, res) => {
    const { adult } = req.user;
@@ -9,8 +10,12 @@ const getMainPage = async (req, res) => {
     if (adult) { getByCondition = {} };
     
  const drinks = await recipesModel.find(getByCondition,"",{skip,limit});
+ if (!drinks) {
+   throw HttpError(404, 'Not found');
+}
  res.status(200).json({
     code: 200,
+    message: 'Success operation',
     quantity: drinks.length,
     data: drinks
  });

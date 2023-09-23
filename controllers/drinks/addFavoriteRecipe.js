@@ -13,7 +13,7 @@ const addFavoriteRecipe = async (req, res) => {
         }
     res.status(201).json({
         code: 201,
-        message: 'success',
+        message: 'Success operation',
         data: recipe,
     });
 };

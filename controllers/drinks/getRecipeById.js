@@ -11,12 +11,12 @@ const getRecipeById = async (req, res) => {
 }
  if (recipe.alcoholic === "Alcoholic") {
     if (!adult) {
-        throw HttpError(404, 'For adult only!');
+        throw HttpError(400, 'For adult only!');
     }
  }
  res.status(200).json({
     code: 200,
-    message: 'success',
+    message: 'Success operation',
     data: recipe,
  });
 }

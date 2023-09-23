@@ -5,11 +5,11 @@ const getFavoriteRecipes = async (req, res) => {
     const userId = req.user.id;
     const recipes = await recipesModel.find({ favorites: userId });
     if (!recipes) {
-        throw HttpError(404, "user haven't favorite recipes yet");
+        throw HttpError(404, "User haven't favorite recipes yet");
     }
     res.status(200).json({
         code: 200,
-        message: 'success',
+        message: 'Success operation',
         data: recipes,
     });
 }
