@@ -3,8 +3,10 @@ const HttpError = require("../../helpers/HttpError");
 const { User } = require("../../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { log } = require("console");
 
 const login = async (req, res) => {
+  console.log(req.body);
   const { email, password } = req.body;
   const { error } = loginSchema.validate(req.body);
   if (error) {
@@ -47,6 +49,7 @@ const login = async (req, res) => {
     user: {
       email,
       adult: user.adult,
+      id: user._id,
     },
   });
 };

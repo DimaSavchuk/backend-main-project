@@ -628,17 +628,34 @@
             "description": "User's session's token",
             "example": "Ouzzfdf6545464FFFFser"
           },
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "adult": {
-            "type": "boolean",
-            "description": "Our User adult or not adult",
-            "example": false
+          "user": {
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            },
+            "adult": {
+              "type": "boolean",
+              "description": "Our User adult or not adult",
+              "example": false
+            },
+            "id": {
+              "type": "string",
+              "description": "User's ID",
+              "format": "650da7a33b6c4baa23abcb66"
+            }
           }
-        }
+        },
+        "example": [
+          {
+            "token": "eyJhbGciOiJI1NiIsInR5cCI6IkpXVCJ9.eyJI6IjY1MTE1YmZlMDFmNDM0ZWYwZmVmNjI0NSIsImlhdCI6MTY5NTYzNjU2OSwiZXhwIjoxNjk1NzA4NTY5fQ.tDMqO0yqfbnmMWeN4D3hJ80M-qZWx6AnW7dWDew",
+            "user": {
+              "email": "user@example.com",
+              "adult": "true",
+              "id": "639b6de9ff77d221f190c50f"
+            }
+          }
+        ]
       },
       "LogoutResponse": {
         "type": "object",
@@ -712,8 +729,8 @@
       "recipesMainpageResponse": {
         "type": "object",
         "properties": {
-          "data" : {
-            "type" : "array",
+          "data": {
+            "type": "array",
             "items": {
               "type": "object",
               "properties": {
@@ -752,112 +769,115 @@
             "instructionsUK": "Намочити скло, занурити його обідок у цукор. Потім додайте лід. Потім додайте все інше. Це так просто!",
             "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167155/cocktails-v1/drinks/Jitterbug.jpg",
             "ingredients": [
-                {
-                    "title": "Gin",
-                    "measure": "2 jiggers ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4a6"
-                },
-                {
-                    "title": "Vodka",
-                    "measure": "1 jigger ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4b9"
-                },
-                {
-                    "title": "Grenadine",
-                    "measure": "3 dashes ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4c7"
-                },
-                {
-                    "title": "Lime juice",
-                    "measure": "1 shot ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4c1"
-                },
-                {
-                    "title": "Sugar",
-                    "measure": "Around rim put 1 pinch ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4bc"
-                },
-                {
-                    "title": "Sugar syrup",
-                    "measure": "3 dashes ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4d4"
-                },
-                {
-                    "title": "Soda water",
-                    "measure": "Fill to top with ",
-                    "ingredientId": "64f1d5d669d8333cf130fccd"
-                }
+              {
+                "title": "Gin",
+                "measure": "2 jiggers ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4a6"
+              },
+              {
+                "title": "Vodka",
+                "measure": "1 jigger ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4b9"
+              },
+              {
+                "title": "Grenadine",
+                "measure": "3 dashes ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4c7"
+              },
+              {
+                "title": "Lime juice",
+                "measure": "1 shot ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4c1"
+              },
+              {
+                "title": "Sugar",
+                "measure": "Around rim put 1 pinch ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4bc"
+              },
+              {
+                "title": "Sugar syrup",
+                "measure": "3 dashes ",
+                "ingredientId": "64aebb7f82d96cc69e0eb4d4"
+              },
+              {
+                "title": "Soda water",
+                "measure": "Fill to top with ",
+                "ingredientId": "64f1d5d669d8333cf130fccd"
+              }
             ],
             "shortDescription": "A lively and energetic cocktail with a blend of vodka, coffee liqueur, and creamy Irish cream."
-        }
+          }
         ]
       },
       "recipeOwnAddRequest": {
         "type": "object",
-          "properties": {
-            "drink": {
-              "type": "string",
-              "description": "Name of drink"
-            },
-            "tags": {
-              "type": "string",
-              "description": "Alternative name drink"
-            },
-            "category": {
-              "type": "string",
-              "description": "category coctail"
-            },
-            "alcoholic": {
-              "type": "string",
-              "description": "type coctail, alcoholic or non-alcoholic"
-            },
-            "glass": {
-              "type": "string",
-              "description": "type glass"
-            },
-            "description": {
-              "type": "string",
-              "description": "Description coctail"
-            },
-            "instructions": {
-              "type": "string",
-              "description": "Instructions for make coctail"
-            },
-            "instructionsUK": {
-              "type": "string",
-              "description": "Instructions for make coctail on Ukrainian language"
-            },
-            "drinkThumb": {
-              "type": "string",
-              "format": "binary",
-              "description": "User's coctail photo file"
-            },
-            "ingredients": {
-              "type" : "string",
-              "format": "JSON",
-              "description": "Масив об'єктів інгрідієнтів коктелю у форматі JSON"
-            },
-            "shortDescription": {
-              "type": "string",
-              "description": "Short coctail description"
-            }
+        "properties": {
+          "drink": {
+            "type": "string",
+            "description": "Name of drink"
           },
-        "example": 
-        {
-          "drink" : "My drink1",
+          "tags": {
+            "type": "string",
+            "description": "Alternative name drink"
+          },
+          "category": {
+            "type": "string",
+            "description": "category coctail"
+          },
+          "alcoholic": {
+            "type": "string",
+            "description": "type coctail, alcoholic or non-alcoholic"
+          },
+          "glass": {
+            "type": "string",
+            "description": "type glass"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description coctail"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for make coctail"
+          },
+          "instructionsUK": {
+            "type": "string",
+            "description": "Instructions for make coctail on Ukrainian language"
+          },
+          "drinkThumb": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's coctail photo file"
+          },
+          "ingredients": {
+            "type": "string",
+            "format": "JSON",
+            "description": "Масив об'єктів інгрідієнтів коктелю у форматі JSON"
+          },
+          "shortDescription": {
+            "type": "string",
+            "description": "Short coctail description"
+          }
+        },
+        "example": {
+          "drink": "My drink1",
           "tags": "super drink, alcoholic",
-          "category" : "super drink",
+          "category": "super drink",
           "alcoholic": "Alcoholic",
-          "glass":"tank",
+          "glass": "tank",
           "description": "seas of gorilka",
           "instructions": "seas of gorilka",
           "instructionsUK": "seas of gorilka",
           "drinkThumb": "link to pictures",
-          "ingredients": [{"title": "whisky",
-                          "measure": "10 oz.",
-                          "ingredientId": "64aebb7f82d96cc69e0eb4fa"}],
+          "ingredients": [
+            {
+              "title": "whisky",
+              "measure": "10 oz.",
+              "ingredientId": "64aebb7f82d96cc69e0eb4fa"
+            }
+          ],
           "shortDescription": "seas of whisky"
-      }
+        }
       },
       "recipeOwnResponse": {
         "type": "object",
@@ -900,7 +920,7 @@
             "description": "User's coctail photo file"
           },
           "ingredients": {
-            "type" : "array",
+            "type": "array",
             "items": {
               "type": "object",
               "properties": {
@@ -924,7 +944,7 @@
             "description": "Short coctail description"
           },
           "favorites": {
-            "type" : "array",
+            "type": "array",
             "items": {
               "description": "Users id, who added this coctails to Favorite pages",
               "type": "string",
@@ -937,115 +957,109 @@
             "Example": "650c80426c3c09abd848e590"
           }
         },
-        "example": 
-        {
+        "example": {
           "code": 201,
           "message": "success",
           "data": {
-              "drink": "My drink1",
-              "tags": "super drink, alcoholic",
-              "category": "super drink",
-              "alcoholic": "Alcoholic",
-              "glass": "tank",
-              "description": "seas of gorilka",
-              "instructions": "seas of gorilka",
-              "instructionsUK": "seas of gorilka",
-              "drinkThumb": "link to pictures",
-              "ingredients": [
-                  {
-                      "title": "whisky",
-                      "measure": "10 oz.",
-                      "ingredientId": "64aebb7f82d96cc69e0eb4fa"
-                  }
-              ],
-              "favorites": [],
-              "shortDescription": "seas of whisky",
-              "owner": "650c80426c3c09abd848e590",
-              "_id": "650dbed4dfb6b4dd39c20bae",
-              "createdAt": "2023-09-22T16:20:36.355Z",
-              "updatedAt": "2023-09-22T16:20:36.355Z"
+            "drink": "My drink1",
+            "tags": "super drink, alcoholic",
+            "category": "super drink",
+            "alcoholic": "Alcoholic",
+            "glass": "tank",
+            "description": "seas of gorilka",
+            "instructions": "seas of gorilka",
+            "instructionsUK": "seas of gorilka",
+            "drinkThumb": "link to pictures",
+            "ingredients": [
+              {
+                "title": "whisky",
+                "measure": "10 oz.",
+                "ingredientId": "64aebb7f82d96cc69e0eb4fa"
+              }
+            ],
+            "favorites": [],
+            "shortDescription": "seas of whisky",
+            "owner": "650c80426c3c09abd848e590",
+            "_id": "650dbed4dfb6b4dd39c20bae",
+            "createdAt": "2023-09-22T16:20:36.355Z",
+            "updatedAt": "2023-09-22T16:20:36.355Z"
           }
-      }
+        }
       },
       "recipeFavoriteRequest": {
         "type": "object",
         "required": ["id"],
-          "properties": {
-            "recipeId": {
-              "type": "string",
-              "description": "recipeId"
-            }
-          },
-        "example": 
-        { "recipeId": "639b6de9ff77d221f190c50f" }
+        "properties": {
+          "recipeId": {
+            "type": "string",
+            "description": "recipeId"
+          }
+        },
+        "example": { "recipeId": "639b6de9ff77d221f190c50f" }
       },
       "recipeFavoriteResponse": {
         "type": "object",
-          "properties": {
-            "drink": {
-              "type": "string",
-              "description": "Name of drink"
-            },
-            "drinkAlternate": {
-              "type": "string",
-              "description": "Alternative name drink"
-            }
+        "properties": {
+          "drink": {
+            "type": "string",
+            "description": "Name of drink"
           },
-        "example": 
-        {
+          "drinkAlternate": {
+            "type": "string",
+            "description": "Alternative name drink"
+          }
+        },
+        "example": {
           "code": 201,
           "message": "Success operation",
           "data": {
-              "favorites": [
-                  "650c80426c3c09abd848e590"
-              ],
-              "_id": "639b6de9ff77d221f190c51a",
-              "drink": "ACID",
-              "drinkAlternate": "Sorry, not specified",
-              "tags": "Sorry, not specified",
-              "video": "Sorry, not specified",
-              "category": "Shot",
-              "IBA": "Sorry, not specified",
-              "alcoholic": "Alcoholic",
-              "glass": "Shot glass",
-              "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
-              "instructions": "Poor in the 151 first followed by the 101 served with a Coke or Dr Pepper chaser.",
-              "instructionsES": "Vierta primero el Bacardi 151, seguido del Wild Turkey 101 y sirva con Coca-Cola o Dr Pepper.",
-              "instructionsDE": "Gering den 151 gefolgt von der 101, die mit einer Cola oder Dr. Pepper Chaser serviert wird.",
-              "instructionsFR": "Pauvre dans le 151 premier suivi du 101 servi avec un chasseur Coke ou Dr Pepper.",
-              "instructionsIT": "Versa prima il Bacardi 151 seguito dal 101, servito con una Coca-Cola.",
-              "instructionsRU": "Плохо в 151 первом, за которым следует 101 подается с кока-колой или Dr Pepper Chaser.",
-              "instructionsPL": "Biedny w 151, a następnie w 101 podawanych z pościgiem Coli lub Dr Pepper.",
-              "instructionsUK": "Поганий у 151 першому, а потім у 101, який подається з кока-колою або др. перцем.",
-              "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/ACID.jpg",
-              "ingredients": [
-                  {
-                      "title": "151 proof rum",
-                      "measure": "1 oz Bacardi ",
-                      "ingredientId": "64f1d5c269d8333cf130fb68"
-                  },
-                  {
-                      "title": "Wild Turkey",
-                      "measure": "1 oz ",
-                      "ingredientId": "64f1d5de69d8333cf130fd56"
-                  }
-              ],
-              "shortDescription": "A bold and electrifying cocktail with a mix of high-proof spirits and a burst of citrus.",
-              "updatedAt": "2023-09-23T09:27:02.002Z"
+            "favorites": ["650c80426c3c09abd848e590"],
+            "_id": "639b6de9ff77d221f190c51a",
+            "drink": "ACID",
+            "drinkAlternate": "Sorry, not specified",
+            "tags": "Sorry, not specified",
+            "video": "Sorry, not specified",
+            "category": "Shot",
+            "IBA": "Sorry, not specified",
+            "alcoholic": "Alcoholic",
+            "glass": "Shot glass",
+            "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
+            "instructions": "Poor in the 151 first followed by the 101 served with a Coke or Dr Pepper chaser.",
+            "instructionsES": "Vierta primero el Bacardi 151, seguido del Wild Turkey 101 y sirva con Coca-Cola o Dr Pepper.",
+            "instructionsDE": "Gering den 151 gefolgt von der 101, die mit einer Cola oder Dr. Pepper Chaser serviert wird.",
+            "instructionsFR": "Pauvre dans le 151 premier suivi du 101 servi avec un chasseur Coke ou Dr Pepper.",
+            "instructionsIT": "Versa prima il Bacardi 151 seguito dal 101, servito con una Coca-Cola.",
+            "instructionsRU": "Плохо в 151 первом, за которым следует 101 подается с кока-колой или Dr Pepper Chaser.",
+            "instructionsPL": "Biedny w 151, a następnie w 101 podawanych z pościgiem Coli lub Dr Pepper.",
+            "instructionsUK": "Поганий у 151 першому, а потім у 101, який подається з кока-колою або др. перцем.",
+            "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/ACID.jpg",
+            "ingredients": [
+              {
+                "title": "151 proof rum",
+                "measure": "1 oz Bacardi ",
+                "ingredientId": "64f1d5c269d8333cf130fb68"
+              },
+              {
+                "title": "Wild Turkey",
+                "measure": "1 oz ",
+                "ingredientId": "64f1d5de69d8333cf130fd56"
+              }
+            ],
+            "shortDescription": "A bold and electrifying cocktail with a mix of high-proof spirits and a burst of citrus.",
+            "updatedAt": "2023-09-23T09:27:02.002Z"
           }
-      }
+        }
       },
       "recipeRemoveRequest": {
         "type": "object",
         "required": ["id"],
-          "properties": {
-            "id": {
-              "type": "string",
-              "description": "Recipe id"
-            }
-          },
-        "example": 
-          { "id": "639b6de9ff77d221f190c50f" }
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Recipe id"
+          }
+        },
+        "example": { "id": "639b6de9ff77d221f190c50f" }
       }
     },
     "securitySchemes": {
