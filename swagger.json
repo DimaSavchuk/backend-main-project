@@ -251,6 +251,91 @@
       }
     },
 
+    "/api/filters/categories": {
+      "get": {
+        "tags": ["Filters"],
+        "summary": "Get a list of all categories",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllCategoriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/filters/ingredients": {
+      "get": {
+        "tags": ["Filters"],
+        "summary": "Get a list of all ingredients",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllIngredientsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/filters/glasses": {
+      "get": {
+        "tags": ["Filters"],
+        "summary": "Get a list of all glasses",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllGlassesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+
     "/api/drinks/mainpage": {
       "get": {
         "tags": ["Drinks"],
@@ -724,6 +809,89 @@
             "properties": {
               "name": { "type": "string" },
               "avatarURL": { "type": "string" }
+            }
+          }
+        }
+      },
+
+      "GetAllCategoriesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetAllIngredientsResponse": {
+        "type": "array",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "item id",
+            "example": "64aebb7f82d96cc69e0eb504"
+          },
+          "ingredientThumb": {
+            "type": "string",
+            "description": "large photo of the item",
+            "example": "https://res.cloudinary.com/dec1shvoo/image/upload/v1689169606/cocktails-v1/ingredient/7-Up.png"
+          },
+          "thumb-medium": {
+            "type": "string",
+            "description": "medium photo of the item",
+            "example": "https://res.cloudinary.com/dec1shvoo/image/upload/v1689169606/cocktails-v1/ingredient/7-Up-Medium.png"
+          },
+          "thumb-small": {
+            "type": "string",
+            "description": "small photo of the item",
+            "example": "https://res.cloudinary.com/dec1shvoo/image/upload/v1689169606/cocktails-v1/ingredient/7-Up-Small.png"
+          },
+          "title": {
+            "type": "string",
+            "description": "item title",
+            "example": "7-Up"
+          },
+          "description": {
+            "type": "string",
+            "description": "item description",
+            "example": "7 Up (stylized as 7up outside of the U.S.) is a brand of lemon-lime flavoured, non-caffeinated soft drink. The rights to the brand are held by Dr Pepper Snapple Group in the United States, and PepsiCo (or its licensees) in the rest of the world. The U.S. version of the 7 Up logo includes a red cherry between the \"7\" and \"Up\"; this red cherry has been animated and used as a mascot for the brand as Cool Spot.\r\n\r\n7 Up was created by Charles Leiper Grigg, who launched his St. Louis–based company The Howdy Corporation in 1920.[1] Grigg came up with the formula for a lemon-lime soft drink in 1929. The product, originally named \"Bib-Label Lithiated Lemon-Lime Soda\", was launched two weeks before the Wall Street Crash of 1929.[2] It contained lithium citrate, a mood-stabilizing drug, until 1950.[3] It was one of a number of patent medicine products popular in the late-19th and early-20th centuries. Its name was later shortened to \"7 Up Lithiated Lemon Soda\" before being further shortened to just \"7 Up\" by 1936.\r\n\r\nWestinghouse bought 7 Up in 1969 and sold it in 1978 to Philip Morris, who then in 1986 sold it to a group led by the investment firm Hicks & Haas.[4] 7 Up merged with Dr Pepper in 1988; Cadbury Schweppes bought the combined company in 1995. The Dr Pepper Snapple Group was spun off from Cadbury Schweppes in 2008.\r\n\r\n7 Up has been reformulated several times since its launch in 1929. In 2006, the version of the product sold in the U.S. was re-formulated so that it could be marketed as being \"100 natural\". This was achieved by eliminating the chelating-agent calcium disodium EDTA, and replacing sodium citrate with potassium citrate in order to reduce the beverage's sodium content.[5] This re-formulation contains no fruit juice and, in the U.S., is sweetened with high-fructose corn syrup (HFCS). The manufacturing process used in the production of HFCS has led some public health and advocacy groups to challenge the ad campaign's \"natural\" claims.[6] In 2007, after the Center for Science in the Public Interest threatened to sue 7 Up, it was announced that 7 Up would stop being marketed as \"100 natural\". Instead, it is now promoted as having \"100 Natural flavours\". The controversy does not extend to other countries, such as the United Kingdom, where HFCS is not generally used in foods, including 7 Up. In 2011, 7 Up began test-marketing a formula, called 7 Up Retro, using sugar rather than HFCS. Container labels sport the caption, \"Made With Real Sugar\".\r\n\r\nThere exists a myth that the 7 Up name comes from the drink having a pH over 7. That would make it neutral or basic on the scale; however, this is not the case, as the 7 Up pH is close to 3.79, similar to other drinks of the type.[7] The real origin of the name is unclear,[8] though Britvic claims that the name comes from the seven main ingredients in the drink,[9] while others have claimed that the number was a coded reference to the lithium contained in the original recipe, which has an atomic mass of approximately 7."
+          },
+          "type": {
+            "type": "string",
+            "description": "item type",
+            "example": "Soft Drink"
+          },
+          "alcohol": {
+            "type": "string",
+            "description": "the presence of alcohol in the item",
+            "example": "No"
+          },
+          "abv": {
+            "type": "string",
+            "description": "abbreviation",
+            "example": "0"
+          },
+          "flavour": {
+            "type": "string",
+            "description": "flavour of the item",
+            "example": "sugar"
+          },
+          "country": {
+            "type": "string",
+            "description": "country of origin",
+            "example": "United States"
+          }
+        }
+      },
+      "GetAllGlassesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         }
