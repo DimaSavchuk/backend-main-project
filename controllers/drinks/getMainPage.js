@@ -8,13 +8,13 @@ const getMainPage = async (req, res) => {
     const skip = (page - 1) * limit;
     let getByCondition = { alcoholic: "Non alcoholic" };
     if (adult) { getByCondition = {} };
-const categories = await recipesModel.distinct("category");
+/*const categories = await recipesModel.distinct("category");
 let test = [];
 for (const item of categories) {
    const qq=await recipesModel.find({category:item}).count()
   // console.log(qq, item)
     test.push({category:item, qq })
-} 
+} */
 // console.log('Categories', typeof(categories), test);
  const totalCount = await recipesModel.count();
  const drinks = await recipesModel.find(getByCondition,"",{skip,limit}).sort({category:1});
@@ -26,7 +26,7 @@ for (const item of categories) {
     message: 'Success operation',
     totalRecipes: totalCount,
     quantity: drinks.length,
-    data: test
+    data: drinks
  });
 }
 
