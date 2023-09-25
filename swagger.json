@@ -761,6 +761,56 @@
           }
         }
       },
+      "SubscribeRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "SubscribeResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's e-mail for which subscribed ",
+            "format": "email"
+          }
+        }
+      },
+      "UpdateProfileRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's Name"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar file"
+          }
+        }
+      },
+      "UpdateProfileResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "code": { "type": "number" },
+          "data": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "avatarURL": { "type": "string" }
+            }
+          }
+        }
+      },
+
       "GetAllCategoriesResponse": {
         "type": "object",
         "properties": {
@@ -839,55 +889,6 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
-          }
-        }
-      },
-      "SubscribeRequest": {
-        "type": "object",
-        "required": ["email"],
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          }
-        }
-      },
-      "SubscribeResponse": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's e-mail for which subscribed ",
-            "format": "email"
-          }
-        }
-      },
-      "UpdateProfileRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "User's Name"
-          },
-          "avatar": {
-            "type": "string",
-            "format": "binary",
-            "description": "User's avatar file"
-          }
-        }
-      },
-      "UpdateProfileResponse": {
-        "type": "object",
-        "properties": {
-          "status": { "type": "string" },
-          "code": { "type": "number" },
-          "data": {
-            "type": "object",
-            "properties": {
-              "name": { "type": "string" },
-              "avatarURL": { "type": "string" }
             }
           }
         }
