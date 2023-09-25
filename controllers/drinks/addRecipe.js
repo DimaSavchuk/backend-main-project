@@ -2,11 +2,12 @@ const { recipesModel, schema } = require('../../models/recipesModel');
 const  HttpError = require('../../helpers/HttpError');
 
 const addRecipe = async (req, res) => {
+    console.log('ADDRECIPE!!!!!!!!!!!!!!!');
     if (!req.file || !req.file.path) {
         throw HttpError(400, "File is required for this request");
       }
         const recipeAdd = {...req.body, drinkThumb: req.file.path, ingredients: JSON.parse(req.body.ingredients) };
-        console.log('Recipe ADD', recipeAdd);
+     //   console.log('Recipe ADD', recipeAdd);
     const { error } = schema.validate(recipeAdd);
     if (error) {
         res.status(400);
