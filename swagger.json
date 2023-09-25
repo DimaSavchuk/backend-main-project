@@ -629,20 +629,23 @@
             "example": "Ouzzfdf6545464FFFFser"
           },
           "user": {
-            "email": {
-              "type": "string",
-              "description": "User's email",
-              "format": "email"
-            },
-            "adult": {
-              "type": "boolean",
-              "description": "Our User adult or not adult",
-              "example": false
-            },
-            "id": {
-              "type": "string",
-              "description": "User's ID",
-              "format": "650da7a33b6c4baa23abcb66"
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "adult": {
+                "type": "boolean",
+                "description": "Our User adult or not adult",
+                "example": false
+              },
+              "id": {
+                "type": "string",
+                "description": "User's ID",
+                "format": "650da7a33b6c4baa23abcb66"
+              }
             }
           }
         },
