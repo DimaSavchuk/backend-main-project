@@ -64,6 +64,9 @@ const recipesSchema = new Schema(
         favorites:{
             type:Array,
         },
+        populate:{
+            type: Number,
+        },
         shortDescription:{
             type:String,
         },
@@ -77,6 +80,9 @@ const recipesSchema = new Schema(
         timestamps: true,
     }
 );
+recipesSchema.methods.popularRating = function(){
+    return `${this.favorites.length}`;
+}
 
 recipesSchema.post("save", errorMongooseHandler);
 

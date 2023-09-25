@@ -539,6 +539,73 @@
           }
         }
       }
+    },
+    "/api/drinks/popular": {
+      "get": {
+        "tags": ["Drinks"],
+        "summary": "Get array of popular recipes",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Success operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getPopularResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No popular recipes yet",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/drinks/search": {
+      "get": {
+        "tags": ["Drinks"],
+        "summary": "Search recipes",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Search recipes on name drink, category or ingredient title",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/searchRecipeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/searchRecipeResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found, try again",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -729,68 +796,114 @@
             }
           }
         },
-        "example": [
+        "example": 
           {
-            "favorites": [],
-            "_id": "639b6de9ff77d221f190c55b",
-            "drink": "Jitterbug",
-            "drinkAlternate": "Sorry, not specified",
-            "tags": "Sorry, not specified",
-            "video": "Sorry, not specified",
-            "category": "Cocktail",
-            "IBA": "Sorry, not specified",
-            "alcoholic": "Alcoholic",
-            "glass": "Cocktail Glass",
-            "description": "Jitterbug is a lively and energetic cocktail that will put a spring in your step. This invigorating drink combines the smoothness of vodka with the rich flavors of coffee liqueur and creamy Irish cream. The result is a delightful blend of coffee and cream with a subtle kick of vodka. Sip on a Jitterbug and let its lively flavors and creamy texture awaken your senses and keep you dancing all night long.",
-            "instructions": "Wet glass, dip rim in sugar. Then add Ice. Then add everything else. It's that simple!",
-            "instructionsES": "Vaso húmedo, borde de inmersión en azúcar. Luego agregue hielo. Luego agrega todo lo demás. ¡Es así de simple!",
-            "instructionsDE": "Feuchtes Glas, Tauchrand in Zucker. Dann fügen Sie Eis hinzu. Dann füge alles andere hinzu. So einfach ist das!",
-            "instructionsFR": "Mouiller le verre, tremper le bord dans le sucre. Ajoutez ensuite de la glace. Ajoutez ensuite tout le reste. C'est si simple!",
-            "instructionsIT": "Bagna il biicchiere, immergere il bordo nello zucchero.\r\nQuindi aggiungi ghiaccio.\r\nQuindi aggiungi tutto il resto.\r\nÈ così semplice!",
-            "instructionsRU": "Намочите стакан, окуните край в сахар. Затем добавьте лед. Затем добавьте все остальное. Это так просто!",
-            "instructionsPL": "Mokre szkło, zanurz w cukrze. Następnie dodaj lód. Następnie dodaj wszystko inne. To takie proste!",
-            "instructionsUK": "Намочити скло, занурити його обідок у цукор. Потім додайте лід. Потім додайте все інше. Це так просто!",
-            "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167155/cocktails-v1/drinks/Jitterbug.jpg",
-            "ingredients": [
+            "code": 200,
+            "message": "Success operation",
+            "totalRecipes": 445,
+            "quantity": 10,
+            "data": [
                 {
-                    "title": "Gin",
-                    "measure": "2 jiggers ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4a6"
+                    "favorites": [],
+                    "_id": "639b6de9ff77d221f190c55b",
+                    "drink": "Jitterbug",
+                    "drinkAlternate": "Sorry, not specified",
+                    "tags": "Sorry, not specified",
+                    "video": "Sorry, not specified",
+                    "category": "Cocktail",
+                    "IBA": "Sorry, not specified",
+                    "alcoholic": "Alcoholic",
+                    "glass": "Cocktail Glass",
+                    "description": "Jitterbug is a lively and energetic cocktail that will put a spring in your step. This invigorating drink combines the smoothness of vodka with the rich flavors of coffee liqueur and creamy Irish cream. The result is a delightful blend of coffee and cream with a subtle kick of vodka. Sip on a Jitterbug and let its lively flavors and creamy texture awaken your senses and keep you dancing all night long.",
+                    "instructions": "Wet glass, dip rim in sugar. Then add Ice. Then add everything else. It's that simple!",
+                    "instructionsES": "Vaso húmedo, borde de inmersión en azúcar. Luego agregue hielo. Luego agrega todo lo demás. ¡Es así de simple!",
+                    "instructionsDE": "Feuchtes Glas, Tauchrand in Zucker. Dann fügen Sie Eis hinzu. Dann füge alles andere hinzu. So einfach ist das!",
+                    "instructionsFR": "Mouiller le verre, tremper le bord dans le sucre. Ajoutez ensuite de la glace. Ajoutez ensuite tout le reste. C'est si simple!",
+                    "instructionsIT": "Bagna il biicchiere, immergere il bordo nello zucchero.\r\nQuindi aggiungi ghiaccio.\r\nQuindi aggiungi tutto il resto.\r\nÈ così semplice!",
+                    "instructionsRU": "Намочите стакан, окуните край в сахар. Затем добавьте лед. Затем добавьте все остальное. Это так просто!",
+                    "instructionsPL": "Mokre szkło, zanurz w cukrze. Następnie dodaj lód. Następnie dodaj wszystko inne. To takie proste!",
+                    "instructionsUK": "Намочити скло, занурити його обідок у цукор. Потім додайте лід. Потім додайте все інше. Це так просто!",
+                    "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167155/cocktails-v1/drinks/Jitterbug.jpg",
+                    "ingredients": [
+                        {
+                            "title": "Gin",
+                            "measure": "2 jiggers ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4a6"
+                        },
+                        {
+                            "title": "Vodka",
+                            "measure": "1 jigger ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4b9"
+                        },
+                        {
+                            "title": "Grenadine",
+                            "measure": "3 dashes ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4c7"
+                        },
+                        {
+                            "title": "Lime juice",
+                            "measure": "1 shot ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4c1"
+                        },
+                        {
+                            "title": "Sugar",
+                            "measure": "Around rim put 1 pinch ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4bc"
+                        },
+                        {
+                            "title": "Sugar syrup",
+                            "measure": "3 dashes ",
+                            "ingredientId": "64aebb7f82d96cc69e0eb4d4"
+                        },
+                        {
+                            "title": "Soda water",
+                            "measure": "Fill to top with ",
+                            "ingredientId": "64f1d5d669d8333cf130fccd"
+                        }
+                    ],
+                    "shortDescription": "A lively and energetic cocktail with a blend of vodka, coffee liqueur, and creamy Irish cream."
                 },
                 {
-                    "title": "Vodka",
-                    "measure": "1 jigger ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4b9"
-                },
-                {
-                    "title": "Grenadine",
-                    "measure": "3 dashes ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4c7"
-                },
-                {
-                    "title": "Lime juice",
-                    "measure": "1 shot ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4c1"
-                },
-                {
-                    "title": "Sugar",
-                    "measure": "Around rim put 1 pinch ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4bc"
-                },
-                {
-                    "title": "Sugar syrup",
-                    "measure": "3 dashes ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4d4"
-                },
-                {
-                    "title": "Soda water",
-                    "measure": "Fill to top with ",
-                    "ingredientId": "64f1d5d669d8333cf130fccd"
+                    "_id": "639b6de9ff77d221f190c51a",
+                    "drink": "ACID",
+                    "drinkAlternate": "Sorry, not specified",
+                    "tags": "Sorry, not specified",
+                    "video": "Sorry, not specified",
+                    "category": "Shot",
+                    "IBA": "Sorry, not specified",
+                    "alcoholic": "Alcoholic",
+                    "glass": "Shot glass",
+                    "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
+                    "instructions": "Poor in the 151 first followed by the 101 served with a Coke or Dr Pepper chaser.",
+                    "instructionsES": "Vierta primero el Bacardi 151, seguido del Wild Turkey 101 y sirva con Coca-Cola o Dr Pepper.",
+                    "instructionsDE": "Gering den 151 gefolgt von der 101, die mit einer Cola oder Dr. Pepper Chaser serviert wird.",
+                    "instructionsFR": "Pauvre dans le 151 premier suivi du 101 servi avec un chasseur Coke ou Dr Pepper.",
+                    "instructionsIT": "Versa prima il Bacardi 151 seguito dal 101, servito con una Coca-Cola.",
+                    "instructionsRU": "Плохо в 151 первом, за которым следует 101 подается с кока-колой или Dr Pepper Chaser.",
+                    "instructionsPL": "Biedny w 151, a następnie w 101 podawanych z pościgiem Coli lub Dr Pepper.",
+                    "instructionsUK": "Поганий у 151 першому, а потім у 101, який подається з кока-колою або др. перцем.",
+                    "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/ACID.jpg",
+                    "ingredients": [
+                        {
+                            "title": "151 proof rum",
+                            "measure": "1 oz Bacardi ",
+                            "ingredientId": "64f1d5c269d8333cf130fb68"
+                        },
+                        {
+                            "title": "Wild Turkey",
+                            "measure": "1 oz ",
+                            "ingredientId": "64f1d5de69d8333cf130fd56"
+                        }
+                    ],
+                    "shortDescription": "A bold and electrifying cocktail with a mix of high-proof spirits and a burst of citrus.",
+                    "favorites": [
+                        "650c80426c3c09abd848e590",
+                        "650ed87d999ecdc8726b5860"
+                    ],
+                    "updatedAt": "2023-09-23T18:46:46.490Z"
                 }
-            ],
-            "shortDescription": "A lively and energetic cocktail with a blend of vodka, coffee liqueur, and creamy Irish cream."
-        }
-        ]
+            ]
+          }
       },
       "recipeOwnAddRequest": {
         "type": "object",
@@ -1039,13 +1152,167 @@
         "type": "object",
         "required": ["id"],
           "properties": {
-            "id": {
+            "recipeId": {
               "type": "string",
-              "description": "Recipe id"
+              "description": "recipeId"
             }
           },
         "example": 
-          { "id": "639b6de9ff77d221f190c50f" }
+          { "recipeId": "639b6de9ff77d221f190c50f" }
+      },
+      "getPopularResponse": {
+        "type": "object",
+          "properties": {
+            "drink": {
+              "type": "string",
+              "description": "Name of drink"
+            },
+            "drinkAlternate": {
+              "type": "string",
+              "description": "Alternative name drink"
+            }
+          },
+        "example": 
+        {
+          "code": 200,
+          "message": "Success operation",
+          "data": [
+              {
+                  "_id": "639b6de9ff77d221f190c56c",
+                  "drink": "Diesel",
+                  "category": "Beer",
+                  "alcoholic": "Alcoholic",
+                  "description": "Diesel is a bold and energizing cocktail that combines the rich flavors of dark rum with the fizzy sweetness of cola. This simple yet satisfying drink is perfect for those who enjoy the classic combination of rum and cola. Sip on a Diesel cocktail and let it ignite your senses with its robust flavors and invigorating fizz.",
+                  "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167149/cocktails-v1/drinks/Diesel.jpg",
+                  "populate": 3
+              },
+              {
+                  "_id": "639b6de9ff77d221f190c599",
+                  "drink": "Limona Corona",
+                  "category": "Beer",
+                  "alcoholic": "Alcoholic",
+                  "description": "Limona Corona is a refreshing and citrusy beer cocktail that combines the bright flavors of lemonade with the crispness of a Mexican lager, such as Corona. This zesty and effervescent drink is perfect for hot summer days or casual gatherings. The result is a tangy and thirst-quenching beverage that offers a delightful balance of citrus and beer flavors. Sip on a Limona Corona and enjoy its invigorating qualities.",
+                  "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167155/cocktails-v1/drinks/Limona_Corona.jpg",
+                  "populate": 2
+              },
+              {
+                  "_id": "650f1c240e8c6f6a32d58c3c",
+                  "drink": "My Drink 5",
+                  "category": "havy drink",
+                  "alcoholic": "alcoholic",
+                  "description": "havy alcohol",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
+                  "populate": 2
+              },
+              {
+                  "_id": "639b6de9ff77d221f190c51f",
+                  "drink": "Apello",
+                  "category": "Other/Unknown",
+                  "alcoholic": "Non alcoholic",
+                  "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
+                  "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/Apello.jpg",
+                  "populate": 1
+              }
+          ]
+        }
+      },
+      "searchRecipeRequest": {
+        "type": "object",
+          "properties": {
+            "drink": {
+              "type": "string",
+              "description": "Name of drink"
+            },
+            "category": {
+              "type": "string",
+              "description": "category coctail"
+            },
+            "ingredients": {
+              "type" : "string",
+              "description": "Назва інгрідієнту коктелю"
+            }
+          },
+        "example": 
+        {
+          "drink":"Apello",
+          "ingredients.title":"Orange juice",
+          "category": "Other/Unknown"
+        }
+      },
+      "searchRecipeResponse": {
+        "type": "object",
+          "properties": {
+            "drink": {
+              "type": "string",
+              "description": "Name of drink"
+            },
+            "category": {
+              "type": "string",
+              "description": "category coctail"
+            },
+            "ingredients": {
+              "type" : "string",
+              "description": "Назва інгрідієнту коктелю"
+            }
+          },
+        "example": 
+        {
+          "code": 200,
+          "message": "Success operation",
+          "count": 1,
+          "data": [
+              {
+                  "_id": "639b6de9ff77d221f190c51f",
+                  "drink": "Apello",
+                  "drinkAlternate": "Sorry, not specified",
+                  "tags": "Sorry, not specified",
+                  "video": "Sorry, not specified",
+                  "category": "Other/Unknown",
+                  "IBA": "Sorry, not specified",
+                  "alcoholic": "Non alcoholic",
+                  "glass": "Collins Glass",
+                  "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
+                  "instructions": "Stirr. Grnish with maraschino cherry.",
+                  "instructionsES": "Mezclar. Decorar con cereza marrasquino.",
+                  "instructionsDE": "Rühren. Mit Maraschinokirsche garnieren.",
+                  "instructionsFR": "Remuez. Garnir de cerise au marasquin.",
+                  "instructionsIT": "Versare tutti gli ingredienti in un mixing glass. Mescolate.\r\nGuarnire con una ciliegia al maraschino.",
+                  "instructionsRU": "Перемешать Гринш с вишней мараскино.",
+                  "instructionsPL": "Mieszać. Zmiel z wiśnią maraschino.",
+                  "instructionsUK": "Перемішайте. Приправити вишнею мараскіном.",
+                  "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/Apello.jpg",
+                  "ingredients": [
+                      {
+                          "title": "Orange juice",
+                          "measure": "4 cl ",
+                          "ingredientId": "64f1d5c069d8333cf130fb3d"
+                      },
+                      {
+                          "title": "Grapefruit juice",
+                          "measure": "3 cl ",
+                          "ingredientId": "64aebb7f82d96cc69e0eb4cc"
+                      },
+                      {
+                          "title": "Apple juice",
+                          "measure": "1 cl ",
+                          "ingredientId": "64aebb7f82d96cc69e0eb4d1"
+                      },
+                      {
+                          "title": "Maraschino cherry",
+                          "measure": "1 ",
+                          "ingredientId": "64f1d5d569d8333cf130fcc3"
+                      }
+                  ],
+                  "shortDescription": "A citrusy and refreshing cocktail with vodka, grapefruit juice, and lime juice.",
+                  "favorites": [
+                      "650ed87d999ecdc8726b5860",
+                      "650c80426c3c09abd848e590"
+                  ],
+                  "updatedAt": "2023-09-24T15:50:46.405Z",
+                  "populate": 1
+              }
+          ]
+      }
       }
     },
     "securitySchemes": {
