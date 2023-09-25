@@ -251,6 +251,35 @@
       }
     },
 
+    "/api/filters/categories": {
+      "get": {
+        "tags": ["Filters"],
+        "summary": "Get a list of all categories",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllCategoriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+
     "/api/drinks/mainpage": {
       "get": {
         "tags": ["Drinks"],
@@ -675,6 +704,10 @@
             "example": "UserName"
           }
         }
+      },
+      "GetAllCategoriesResponse": {
+        "type": "object",
+        "properties": []
       },
       "SubscribeRequest": {
         "type": "object",
