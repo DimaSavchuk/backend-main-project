@@ -279,6 +279,34 @@
         }
       }
     },
+    "/api/filters/ingredients": {
+      "get": {
+        "tags": ["Filters"],
+        "summary": "Get a list of all ingredients",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllIngredientsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
     "/api/filters/glasses": {
       "get": {
         "tags": ["Filters"],
@@ -735,11 +763,74 @@
       },
       "GetAllCategoriesResponse": {
         "type": "object",
-        "properties": []
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetAllIngredientsResponse": {
+        "type": "array",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "item id"
+          },
+          "ingredientThumb": {
+            "type": "string",
+            "description": "item main ingredient"
+          },
+          "thumb-medium": {
+            "type": "string",
+            "description": "item second ingredient"
+          },
+          "thumb-small": {
+            "type": "string",
+            "description": "item third ingredient"
+          },
+          "title": {
+            "type": "string",
+            "description": "item title"
+          },
+          "description": {
+            "type": "string",
+            "description": "item description"
+          },
+          "type": {
+            "type": "string",
+            "description": "item type"
+          },
+          "alcohol": {
+            "type": "string",
+            "description": "the presence of alcohol in the item"
+          },
+          "abv": {
+            "type": "string",
+            "description": "abbreviation"
+          },
+          "flavour": {
+            "type": "string",
+            "description": "flavour of the item"
+          },
+          "country": {
+            "type": "string",
+            "description": "country of origin"
+          }
+        }
       },
       "GetAllGlassesResponse": {
         "type": "object",
-        "properties": []
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "SubscribeRequest": {
         "type": "object",
