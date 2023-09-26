@@ -8,6 +8,7 @@ const removeFavoriteRecipe = require('./removeFavoriteRecipe');
 const getFavoriteRecipes = require('./getFavoriteRecipes');
 const getPopularRecipes = require('./getPopularRecipes');
 const getSearchRecipe = require('./getSearchRecipe');
+const getRecipesForHomePage = require('./getRecipesForHomePage');
 
 module.exports = {
     getMainPage,
@@ -19,5 +20,6 @@ module.exports = {
     removeFavoriteRecipe,
     getFavoriteRecipes,
     getPopularRecipes,
-    getSearchRecipe
+    getSearchRecipe,
+    getRecipesForHomePage
 }
