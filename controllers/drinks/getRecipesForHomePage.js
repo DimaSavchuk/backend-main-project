@@ -9,9 +9,9 @@ const getRecipesForHomePage = async (req, res) => {
     if (adult) { getByCondition = {} };
 
 const categories = await recipesModel.distinct("category");
+
 const homeList = [];
 let itemCount = 0;
-
 for (const item of categories) {
    const drinks=await recipesModel.find({ $and:[ {category:item}, getByCondition ]}, {drink:1, drinkThumb:1}).limit(3)
     itemCount = itemCount + drinks.length;
