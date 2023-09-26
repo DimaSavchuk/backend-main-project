@@ -30,6 +30,7 @@ for (let i=0; i<recipe[0].ingredients.length; i+=1) {
  res.status(200).json({
     code: 200,
     message: 'Success operation',
+    idCurrentUser: req.user.id,
     data: recipe,
  });
 }
