@@ -748,25 +748,20 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
-          "email": {
+          "name": {
             "type": "string",
-            "description": "User's email",
-            "format": "email"
+            "description": "User's Name",
+            "example": "OurUser"
           },
           "password": {
             "type": "string",
             "description": "User's password hash",
             "example": "qwe/A554rty1DDddgG23"
           },
-          "name": {
+          "email": {
             "type": "string",
-            "description": "User's Name",
-            "example": "OurUser"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "URL from saved User's avatar",
-            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+            "description": "User's email",
+            "format": "email"
           },
           "birthDate": {
             "type": "number",
@@ -777,8 +772,37 @@
             "type": "boolean",
             "description": "Our User adult or not adult",
             "example": false
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "URL from saved User's avatar",
+            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User's ID",
+            "example": "6513SSfG1ae089c19dMnv"
           }
-        }
+        },
+        "example": [
+          {
+            "status": "success",
+            "code": 201,
+            "data": {
+              "name": "Sergii",
+              "password": "$2b$12$IpuEuJSaC4hLr9XUQe4Ekunk4yj8rz9WY43n7Tbsv/GKiCwGC3mnC",
+              "email": "core4@mail.com",
+              "subscriptionEmail": "",
+              "birthDate": 1000924800,
+              "adult": true,
+              "token": "",
+              "avatarURL": "//www.gravatar.com/avatar/49795700c783bd680baa016a0d392f18",
+              "_id": "65131ae06fd89c19d0cfd2f5",
+              "createdAt": "2023-09-26T17:54:40.136Z",
+              "updatedAt": "2023-09-26T17:54:40.136Z"
+            }
+          }
+        ]
       },
       "LoginRequest": {
         "type": "object",
@@ -829,7 +853,7 @@
           {
             "token": "eyJhbGciOiJI1NiIsInR5cCI6IkpXVCJ9.eyJI6IjY1MTE1YmZlMDFmNDM0ZWYwZmVmNjI0NSIsImlhdCI6MTY5NTYzNjU2OSwiZXhwIjoxNjk1NzA4NTY5fQ.tDMqO0yqfbnmMWeN4D3hJ80M-qZWx6AnW7dWDew",
             "user": {
-              "email": "user@example.com",
+              "email": "core4@mail.com",
               "adult": "true",
               "id": "639b6de9ff77d221f190c50f"
             }
@@ -869,12 +893,35 @@
       "SubscribeResponse": {
         "type": "object",
         "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code of response status",
+            "example": "200"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "Subscription email sent successfully"
+          },
           "email": {
             "type": "string",
             "description": "User's e-mail for which subscribed ",
             "format": "email"
           }
-        }
+        },
+        "example": [
+          {
+            "status": "success",
+            "code": 200,
+            "message": "Subscription email sent successfully.",
+            "email": "vamad43001@cdeter.com"
+          }
+        ]
       },
       "UpdateProfileRequest": {
         "type": "object",
@@ -1009,23 +1056,22 @@
           }
         },
         "example": {
-          
-    "code": 200,
-    "message": "Success operation",
-    "totalRecipes": 440,
-    "quantity": 10,
-    "data": [
-        {
-            "_id": "639b6de9ff77d221f190c599",
-            "drink": "Limona Corona",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Limona_Corona.jpg.jpg"
-        },
-        {
-            "_id": "639b6de9ff77d221f190c56c",
-            "drink": "Diesel",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Diesel.jpg.jpg"
-        }
-      ]
+          "code": 200,
+          "message": "Success operation",
+          "totalRecipes": 440,
+          "quantity": 10,
+          "data": [
+            {
+              "_id": "639b6de9ff77d221f190c599",
+              "drink": "Limona Corona",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Limona_Corona.jpg.jpg"
+            },
+            {
+              "_id": "639b6de9ff77d221f190c56c",
+              "drink": "Diesel",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Diesel.jpg.jpg"
+            }
+          ]
         }
       },
       "recipeByIdResponse": {
@@ -1048,48 +1094,48 @@
             }
           }
         },
-        "example": {          
-    "code": 200,
-    "message": "Success operation",
-    "idCurrentUser": "650c80426c3c09abd848e590",
-    "data": [
-        {
-            "favorites": [],
-            "_id": "639b6de9ff77d221f190c5c1",
-            "drink": "Campari Beer",
-            "drinkAlternate": "Sorry, not specified",
-            "tags": "Sorry, not specified",
-            "video": "Sorry, not specified",
-            "category": "Beer",
-            "IBA": "Sorry, not specified",
-            "alcoholic": "Alcoholic",
-            "glass": "Beer mug",
-            "description": "Campari Beer is a bitter and refreshing beer cocktail that's perfect for those who appreciate the bold and distinctive flavor of Campari. This invigorating libation combines Campari with a splash of soda and a crisp beer, resulting in a tangy and effervescent drink with a hint of bitterness. It's known for its unique taste profile and the ability to awaken your palate with every sip. Enjoy a Campari Beer and embrace the boldness of this distinctive cocktail.",
-            "instructions": "Use a 15 oz glass. Add Campari first. Fill with beer.",
-            "instructionsUK": "Використовуйте склянку на 15 унцій. Спочатку додайте Campari. Залийте пивом.",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Campari_Beer.jpg.jpg",
-            "ingredients": [
+        "example": {
+          "code": 200,
+          "message": "Success operation",
+          "idCurrentUser": "650c80426c3c09abd848e590",
+          "data": [
+            {
+              "favorites": [],
+              "_id": "639b6de9ff77d221f190c5c1",
+              "drink": "Campari Beer",
+              "drinkAlternate": "Sorry, not specified",
+              "tags": "Sorry, not specified",
+              "video": "Sorry, not specified",
+              "category": "Beer",
+              "IBA": "Sorry, not specified",
+              "alcoholic": "Alcoholic",
+              "glass": "Beer mug",
+              "description": "Campari Beer is a bitter and refreshing beer cocktail that's perfect for those who appreciate the bold and distinctive flavor of Campari. This invigorating libation combines Campari with a splash of soda and a crisp beer, resulting in a tangy and effervescent drink with a hint of bitterness. It's known for its unique taste profile and the ability to awaken your palate with every sip. Enjoy a Campari Beer and embrace the boldness of this distinctive cocktail.",
+              "instructions": "Use a 15 oz glass. Add Campari first. Fill with beer.",
+              "instructionsUK": "Використовуйте склянку на 15 унцій. Спочатку додайте Campari. Залийте пивом.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Campari_Beer.jpg.jpg",
+              "ingredients": [
                 {
-                    "title": "Lager",
-                    "measure": "1 bottle ",
-                    "ingredientId": "64aebb7f82d96cc69e0eb4f9",
-                    "ingredientThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager.png.png",
-                    "thumbMedium": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager-Medium.png.png",
-                    "thumbSmall": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager-Small.png.png"
+                  "title": "Lager",
+                  "measure": "1 bottle ",
+                  "ingredientId": "64aebb7f82d96cc69e0eb4f9",
+                  "ingredientThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager.png.png",
+                  "thumbMedium": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager-Medium.png.png",
+                  "thumbSmall": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/Lager-Small.png.png"
                 },
                 {
-                    "title": "Campari",
-                    "measure": "1 1/2 cl ",
-                    "ingredientId": "64f1d5cc69d8333cf130fc22",
-                    "ingredientThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png",
-                    "thumbMedium": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png",
-                    "thumbSmall": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png"
+                  "title": "Campari",
+                  "measure": "1 1/2 cl ",
+                  "ingredientId": "64f1d5cc69d8333cf130fc22",
+                  "ingredientThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png",
+                  "thumbMedium": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png",
+                  "thumbSmall": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/ingredients/.png"
                 }
-            ],
-            "shortDescription": "A bitter and refreshing beer cocktail with Campari and a splash of soda.",
-            "updatedAt": "2023-09-25T21:17:52.429Z"
-        }
-    ]
+              ],
+              "shortDescription": "A bitter and refreshing beer cocktail with Campari and a splash of soda.",
+              "updatedAt": "2023-09-25T21:17:52.429Z"
+            }
+          ]
         }
       },
       "recipesOwnResponse": {
@@ -1117,11 +1163,11 @@
           "message": "Success operation",
           "data": [
             {
-            "_id": "6512ecf0fe91fadbe52116ff",
-            "drink": "My Drink 6",
-            "alcoholic": "alcoholic",
-            "description": "havy alcohol",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg"
+              "_id": "6512ecf0fe91fadbe52116ff",
+              "drink": "My Drink 6",
+              "alcoholic": "alcoholic",
+              "description": "havy alcohol",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg"
             }
           ]
         }
@@ -1335,25 +1381,24 @@
           }
         },
         "example": {
-          
-    "code": 200,
-    "message": "Success operation",
-    "data": [
-        {
-            "_id": "639b6de9ff77d221f190c51f",
-            "drink": "Apello",
-            "alcoholic": "Non alcoholic",
-            "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
-        },
-        {
-            "_id": "639b6de9ff77d221f190c51a",
-            "drink": "ACID",
-            "alcoholic": "Alcoholic",
-            "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
-        }
-        ]
+          "code": 200,
+          "message": "Success operation",
+          "data": [
+            {
+              "_id": "639b6de9ff77d221f190c51f",
+              "drink": "Apello",
+              "alcoholic": "Non alcoholic",
+              "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
+            },
+            {
+              "_id": "639b6de9ff77d221f190c51a",
+              "drink": "ACID",
+              "alcoholic": "Alcoholic",
+              "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
+            }
+          ]
         }
       },
       "recipeRemoveRequest": {
@@ -1389,24 +1434,24 @@
           }
         },
         "example": {
-    "code": 200,
-    "message": "Success operation",
-    "data": [
-        {
-            "_id": "639b6de9ff77d221f190c51f",
-            "drink": "Apello",
-            "alcoholic": "Non alcoholic",
-            "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
-        },
-        {
-            "_id": "639b6de9ff77d221f190c51a",
-            "drink": "ACID",
-            "alcoholic": "Alcoholic",
-            "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
-            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
-        }
-        ]
+          "code": 200,
+          "message": "Success operation",
+          "data": [
+            {
+              "_id": "639b6de9ff77d221f190c51f",
+              "drink": "Apello",
+              "alcoholic": "Non alcoholic",
+              "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
+            },
+            {
+              "_id": "639b6de9ff77d221f190c51a",
+              "drink": "ACID",
+              "alcoholic": "Alcoholic",
+              "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
+            }
+          ]
         }
       },
       "getPopularResponse": {
@@ -1583,49 +1628,49 @@
           "itemCountInSelection": 37,
           "quantityCategories": 13,
           "data": [
+            {
+              "category": "Beer",
+              "drinks": [
                 {
-                  "category": "Beer",
-                  "drinks": [
-                      {
-                          "_id": "639b6de9ff77d221f190c599",
-                          "drink": "Limona Corona",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Limona_Corona.jpg.jpg"
-                      },
-                      {
-                          "_id": "639b6de9ff77d221f190c50b",
-                          "drink": "Irish Russian",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Irish_Russian.jpg.jpg"
-                      },
-                      {
-                          "_id": "639b6de9ff77d221f190c5f0",
-                          "drink": "Winter Rita",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Winter_Rita.jpg.jpg"
-                      }
-                  ]
+                  "_id": "639b6de9ff77d221f190c599",
+                  "drink": "Limona Corona",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Limona_Corona.jpg.jpg"
                 },
                 {
-                  "category": "Cocktail",
-                  "drinks": [
-                      {
-                          "_id": "639b6de9ff77d221f190c558",
-                          "drink": "Passion Fruit Martini",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Passion_Fruit_Martini.jpg.jpg"
-                      },
-                      {
-                          "_id": "639b6de9ff77d221f190c546",
-                          "drink": "Pink Moon",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Pink_Moon.jpg.jpg"
-                      },
-                      {
-                          "_id": "639b6de9ff77d221f190c567",
-                          "drink": "155 Belmont",
-                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/155_Belmont.jpg.jpg"
-                      }
-                  ]
+                  "_id": "639b6de9ff77d221f190c50b",
+                  "drink": "Irish Russian",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Irish_Russian.jpg.jpg"
+                },
+                {
+                  "_id": "639b6de9ff77d221f190c5f0",
+                  "drink": "Winter Rita",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Winter_Rita.jpg.jpg"
                 }
-              ] 
+              ]
+            },
+            {
+              "category": "Cocktail",
+              "drinks": [
+                {
+                  "_id": "639b6de9ff77d221f190c558",
+                  "drink": "Passion Fruit Martini",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Passion_Fruit_Martini.jpg.jpg"
+                },
+                {
+                  "_id": "639b6de9ff77d221f190c546",
+                  "drink": "Pink Moon",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Pink_Moon.jpg.jpg"
+                },
+                {
+                  "_id": "639b6de9ff77d221f190c567",
+                  "drink": "155 Belmont",
+                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/155_Belmont.jpg.jpg"
+                }
+              ]
             }
-          }
+          ]
+        }
+      }
     },
     "securitySchemes": {
       "Bearer": {
