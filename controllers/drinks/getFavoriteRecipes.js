@@ -3,7 +3,8 @@ const HttpError = require('../../helpers/HttpError');
 
 const getFavoriteRecipes = async (req, res) => {
     const userId = req.user.id;
-    const recipes = await recipesModel.find({ favorites: userId });
+    const recipes = await recipesModel.find({ favorites: userId }, 
+        {drink:1, alcoholic:1, description:1, drinkThumb:1 });
     if (!recipes) {
         throw HttpError(404, "User haven't favorite recipes yet");
     }

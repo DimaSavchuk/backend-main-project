@@ -10,7 +10,8 @@ const getMainPage = async (req, res) => {
     if (adult) { getByCondition = {} };
 
  const totalCount = await recipesModel.count();
- const drinks = await recipesModel.find(getByCondition,"",{skip,limit}).sort({category:1});
+ const drinks = await recipesModel.find(getByCondition,{
+   drink:1, drinkThumb:1},{skip,limit}).sort({category:1});
  if (!drinks) {
    throw HttpError(404, 'Not found');
 }
