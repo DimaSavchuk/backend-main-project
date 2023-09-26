@@ -691,6 +691,34 @@
           }
         }
       }
+    },
+    "/api/drinks/homepage": {
+      "get": {
+        "tags": ["Drinks"],
+        "summary": "Array of objects recipes drinks by Categories",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Success operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipesHomepageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User haven't recipes yet",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1425,17 +1453,17 @@
       "searchRecipeResponse": {
         "type": "object",
         "properties": {
-          "drink": {
-            "type": "string",
-            "description": "Name of drink"
-          },
           "category": {
             "type": "string",
             "description": "category coctail"
           },
-          "ingredients": {
+          "drink": {
             "type": "string",
-            "description": "Назва інгрідієнту коктелю"
+            "description": "Name of drink"
+          },
+          "drinkThumb": {
+            "type": "string",
+            "description": "link to cocktail picture"
           }
         },
         "example": {
@@ -1495,7 +1523,73 @@
             }
           ]
         }
-      }
+      },
+      "recipesHomepageResponse": {
+        "type": "object",
+        "properties": {
+          "drink": {
+            "type": "string",
+            "description": "Name of drink"
+          },
+          "category": {
+            "type": "string",
+            "description": "category coctail"
+          },
+          "ingredients": {
+            "type": "string",
+            "description": "Назва інгрідієнту коктелю"
+          }
+        },
+        "example": {
+          "code": 200,
+          "message": "Success operation",
+          "totalRecipes": 451,
+          "itemCountInSelection": 37,
+          "quantityCategories": 13,
+          "data": [
+                {
+                  "category": "Beer",
+                  "drinks": [
+                      {
+                          "_id": "639b6de9ff77d221f190c599",
+                          "drink": "Limona Corona",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Limona_Corona.jpg.jpg"
+                      },
+                      {
+                          "_id": "639b6de9ff77d221f190c50b",
+                          "drink": "Irish Russian",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Irish_Russian.jpg.jpg"
+                      },
+                      {
+                          "_id": "639b6de9ff77d221f190c5f0",
+                          "drink": "Winter Rita",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Winter_Rita.jpg.jpg"
+                      }
+                  ]
+                },
+                {
+                  "category": "Cocktail",
+                  "drinks": [
+                      {
+                          "_id": "639b6de9ff77d221f190c558",
+                          "drink": "Passion Fruit Martini",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Passion_Fruit_Martini.jpg.jpg"
+                      },
+                      {
+                          "_id": "639b6de9ff77d221f190c546",
+                          "drink": "Pink Moon",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Pink_Moon.jpg.jpg"
+                      },
+                      {
+                          "_id": "639b6de9ff77d221f190c567",
+                          "drink": "155 Belmont",
+                          "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/155_Belmont.jpg.jpg"
+                      }
+                  ]
+                }
+              ] 
+            }
+          }
     },
     "securitySchemes": {
       "Bearer": {

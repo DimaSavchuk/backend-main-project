@@ -22,10 +22,13 @@ router.post(
 router.delete("/own/remove", auth, errorHandler(drinks.removeRecipeById));
 router.get("/favorite", auth, errorHandler(drinks.getFavoriteRecipes));
 router.post("/favorite/add", auth, errorHandler(drinks.addFavoriteRecipe));
+
 router.delete(
   "/favorite/remove",
   auth,
   errorHandler(drinks.removeFavoriteRecipe)
 );
+router.get("/homepage", auth, errorHandler(drinks.getRecipesForHomePage));
+
 
 module.exports = router;
