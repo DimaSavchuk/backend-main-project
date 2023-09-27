@@ -9,8 +9,8 @@ const getSearchRecipe = async (req, res) => {
     if (adult) { getByCondition = { ...req.body } };
 
     // const recipes = await recipesModel.find({ $or:[{...req.body}]});
-     const recipes = await recipesModel.find(getByCondition);
-      //  {drink:1, category:1,alcoholic:1, populate:1}).sort({populate:-1})
+     const recipes = await recipesModel.find(getByCondition,
+        {drink:1, drinkThumb:1, category:1, alcoholic:1, populate:1}).sort({populate:-1})
 
     if (!recipes || !recipes.length) {
         throw HttpError(404, "Not found, try again");

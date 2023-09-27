@@ -527,7 +527,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/recipesMainpageResponse"
+                  "$ref": "#/components/schemas/recipeFavoriteGetResponse"
                 }
               }
             }
@@ -566,7 +566,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/recipeFavoriteResponse"
+                  "$ref": "#/components/schemas/recipeFavoriteAddResponse"
                 }
               }
             }
@@ -1089,6 +1089,95 @@
                 "drinkAlternate": {
                   "type": "string",
                   "description": "Alternative name drink"
+                },
+                "tags": {
+                  "type": "string",
+                  "description": "Tags of shirt descriptions"
+                },
+                "video": {
+                  "type": "string",
+                  "description": "link to video with coctail"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "category coctail"
+                },
+                "IBA": {
+                  "type": "string",
+                  "description": ""
+                },
+                "alcoholic": {
+                  "type": "string",
+                  "description": "type coctail, alcoholic or non-alcoholic"
+                },
+                "glass": {
+                  "type": "string",
+                  "description": "type glass"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description coctail"
+                },
+                "instructions": {
+                  "type": "string",
+                  "description": "Instructions for make coctail"
+                },
+                "instructionsUK": {
+                  "type": "string",
+                  "description": "Instructions for make coctail on Ukrainian language"
+                },
+                "drinkThumb": {
+                  "type": "string",
+                  "description": "link to cocktail pictures"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "description": "Name of ingredient"
+                      },
+                      "measure": {
+                        "type": "string",
+                        "description": "Volume of ingredient"
+                      },
+                      "ingredientId": {
+                        "type": "string",
+                        "description": "ingredient id"
+                      },
+                      "ingredientThumb": {
+                        "type": "string",
+                        "description": "link to ingredient picture, big size"
+                      },
+                      "thumbMedium": {
+                        "type": "string",
+                        "description": "link to ingredient picture, medium size"
+                      },
+                      "thumbSmall": {
+                        "type": "string",
+                        "description": "link to ingredient picture, small size"
+                      }
+                    }
+                  }
+                },
+                "shortDescription": {
+                  "type": "string",
+                  "description": "Short coctail description"
+                },
+                "favorites": {
+                  "type": "array",
+                  "items": {
+                    "description": "Users id, who added this coctails to Favorite pages",
+                    "type": "string",
+                    "Example": "650c80426c3c09abd848e590"
+                  }
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "User id, who is created this recipe",
+                  "Example": "650c80426c3c09abd848e590"
                 }
               }
             }
@@ -1251,7 +1340,7 @@
           },
           "tags": {
             "type": "string",
-            "description": "Alternative name drink"
+            "description": "Tags of shirt descriptions"
           },
           "category": {
             "type": "string",
@@ -1279,8 +1368,7 @@
           },
           "drinkThumb": {
             "type": "string",
-            "format": "binary",
-            "description": "User's coctail photo file"
+            "description": "link to cocktail pictures"
           },
           "ingredients": {
             "type": "array",
@@ -1349,6 +1437,47 @@
           }
         }
       },
+      "recipeFavoriteGetResponse": {
+        "type": "object",
+        "properties": {
+          "drink": {
+            "type": "string",
+            "description": "Name of drink"
+          },
+          "alcoholic": {
+            "type": "string",
+            "description": "alcoholic or non alcoholic"
+          },
+          "description": {
+            "type": "string",
+            "description": "alcoholic or non alcoholic"
+          },
+          "drinkThumb": {
+            "type": "string",
+            "description": "link to cocktail pictures"
+          }
+        },
+        "example": {
+          "code": 200,
+          "message": "Success operation",
+          "data": [
+            {
+              "_id": "639b6de9ff77d221f190c51f",
+              "drink": "Apello",
+              "alcoholic": "Non alcoholic",
+              "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
+            },
+            {
+              "_id": "639b6de9ff77d221f190c51a",
+              "drink": "ACID",
+              "alcoholic": "Alcoholic",
+              "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
+            }
+          ]
+        }
+      },
       "recipeFavoriteRequest": {
         "type": "object",
         "required": ["id"],
@@ -1360,7 +1489,7 @@
         },
         "example": { "recipeId": "639b6de9ff77d221f190c50f" }
       },
-      "recipeFavoriteResponse": {
+      "recipeFavoriteAddResponse": {
         "type": "object",
         "properties": {
           "drink": {
@@ -1416,42 +1545,139 @@
       "recipeRemoveResponse": {
         "type": "object",
         "properties": {
-          "drink": {
-            "type": "string",
-            "description": "Name of drink"
-          },
-          "alcoholic": {
-            "type": "string",
-            "description": "alcoholic or non alcoholic"
-          },
-          "description": {
-            "type": "string",
-            "description": "alcoholic or non alcoholic"
-          },
-          "drinkThumb": {
-            "type": "string",
-            "description": "link to cocktail pictures"
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "drink": {
+                  "type": "string",
+                  "description": "Name of drink"
+                },
+                "drinkAlternate": {
+                  "type": "string",
+                  "description": "Alternative name drink"
+                },
+                "tags": {
+                  "type": "string",
+                  "description": "Tags of shirt descriptions"
+                },
+                "video": {
+                  "type": "string",
+                  "description": "link to video with coctail"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "category coctail"
+                },
+                "IBA": {
+                  "type": "string",
+                  "description": ""
+                },
+                "alcoholic": {
+                  "type": "string",
+                  "description": "type coctail, alcoholic or non-alcoholic"
+                },
+                "glass": {
+                  "type": "string",
+                  "description": "type glass"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description coctail"
+                },
+                "instructions": {
+                  "type": "string",
+                  "description": "Instructions for make coctail"
+                },
+                "instructionsUK": {
+                  "type": "string",
+                  "description": "Instructions for make coctail on Ukrainian language"
+                },
+                "drinkThumb": {
+                  "type": "string",
+                  "description": "link to cocktail pictures"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "description": "Name of ingredient"
+                      },
+                      "measure": {
+                        "type": "string",
+                        "description": "Volume of ingredient"
+                      },
+                      "ingredientId": {
+                        "type": "string",
+                        "description": "ingredient id"
+                      },
+                      "ingredientThumb": {
+                        "type": "string",
+                        "description": "link to ingredient picture, big size"
+                      },
+                      "thumbMedium": {
+                        "type": "string",
+                        "description": "link to ingredient picture, medium size"
+                      },
+                      "thumbSmall": {
+                        "type": "string",
+                        "description": "link to ingredient picture, small size"
+                      }
+                    }
+                  }
+                },
+                "shortDescription": {
+                  "type": "string",
+                  "description": "Short coctail description"
+                },
+                "favorites": {
+                  "type": "array",
+                  "items": {
+                    "description": "Users id, who added this coctails to Favorite pages",
+                    "type": "string",
+                    "Example": "650c80426c3c09abd848e590"
+                  }
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "User id, who is created this recipe",
+                  "Example": "650c80426c3c09abd848e590"
+                }
+              }
+            }
           }
         },
         "example": {
           "code": 200,
           "message": "Success operation",
-          "data": [
-            {
-              "_id": "639b6de9ff77d221f190c51f",
-              "drink": "Apello",
-              "alcoholic": "Non alcoholic",
-              "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
-              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg"
-            },
-            {
-              "_id": "639b6de9ff77d221f190c51a",
-              "drink": "ACID",
-              "alcoholic": "Alcoholic",
-              "description": "ACID is a bold and electrifying cocktail that will jolt your senses. This potent drink features a mix of high-proof spirits, such as rum and vodka, blended with a burst of citrus flavors. The result is a powerful and intense cocktail that packs a punch and delivers an electrifying experience. Approach ACID with caution and let its high-energy flavors ignite your palate.",
-              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/ACID.jpg.jpg"
-            }
-          ]
+          "data": {
+            "_id": "65132aa5af788399d0f70bd7",
+            "drink": "My Drink 6",
+            "tags": "Handmade product",
+            "category": "havy drink",
+            "alcoholic": "alcoholic",
+            "glass": "tank",
+            "description": "havy alcohol",
+            "instructions": "mixed all",
+            "instructionsUK": "горілка і ще раз горілка",
+            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
+            "ingredients": [
+              {
+                "title": "whisky",
+                "measure": "10 oz.",
+                "ingredientId": "64aebb7f82d96cc69e0eb4fa"
+              }
+            ],
+            "favorites": [],
+            "shortDescription": "seas of whisky",
+            "owner": "650c80426c3c09abd848e590",
+            "createdAt": "2023-09-26T19:01:57.782Z",
+            "updatedAt": "2023-09-26T19:01:57.782Z"
+          }
         }
       },
       "getPopularResponse": {
@@ -1461,9 +1687,25 @@
             "type": "string",
             "description": "Name of drink"
           },
-          "drinkAlternate": {
+          "category": {
             "type": "string",
-            "description": "Alternative name drink"
+            "description": "category coctail"
+          },
+          "alcoholic": {
+            "type": "string",
+            "description": "type coctail, alcoholic or non-alcoholic"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description coctail"
+          },
+          "drinkThumb": {
+            "type": "string",
+            "description": "link to cocktail pictures"
+          },
+          "populate": {
+            "type": "number",
+            "description": "Rating coctail from users"
           }
         },
         "example": {
@@ -1534,17 +1776,21 @@
       "searchRecipeResponse": {
         "type": "object",
         "properties": {
-          "category": {
-            "type": "string",
-            "description": "category coctail"
-          },
           "drink": {
             "type": "string",
             "description": "Name of drink"
           },
+          "category": {
+            "type": "string",
+            "description": "category coctail"
+          },
+          "alcoholic": {
+            "type": "string",
+            "description": "type coctail, alcoholic or non-alcoholic"
+          },
           "drinkThumb": {
             "type": "string",
-            "description": "link to cocktail picture"
+            "description": "link to cocktail pictures"
           }
         },
         "example": {
@@ -1555,51 +1801,9 @@
             {
               "_id": "639b6de9ff77d221f190c51f",
               "drink": "Apello",
-              "drinkAlternate": "Sorry, not specified",
-              "tags": "Sorry, not specified",
-              "video": "Sorry, not specified",
               "category": "Other/Unknown",
-              "IBA": "Sorry, not specified",
               "alcoholic": "Non alcoholic",
-              "glass": "Collins Glass",
-              "description": "Apello is a citrusy and refreshing cocktail that showcases the vibrant flavors of vodka, grapefruit juice, and lime juice. It's a zesty and invigorating drink that is perfect for hot summer days or as a lively aperitif. Sip on an Apello cocktail and let its bright and tangy flavors awaken your senses.",
-              "instructions": "Stirr. Grnish with maraschino cherry.",
-              "instructionsES": "Mezclar. Decorar con cereza marrasquino.",
-              "instructionsDE": "Rühren. Mit Maraschinokirsche garnieren.",
-              "instructionsFR": "Remuez. Garnir de cerise au marasquin.",
-              "instructionsIT": "Versare tutti gli ingredienti in un mixing glass. Mescolate.\r\nGuarnire con una ciliegia al maraschino.",
-              "instructionsRU": "Перемешать Гринш с вишней мараскино.",
-              "instructionsPL": "Mieszać. Zmiel z wiśnią maraschino.",
-              "instructionsUK": "Перемішайте. Приправити вишнею мараскіном.",
-              "drinkThumb": "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167144/cocktails-v1/drinks/Apello.jpg",
-              "ingredients": [
-                {
-                  "title": "Orange juice",
-                  "measure": "4 cl ",
-                  "ingredientId": "64f1d5c069d8333cf130fb3d"
-                },
-                {
-                  "title": "Grapefruit juice",
-                  "measure": "3 cl ",
-                  "ingredientId": "64aebb7f82d96cc69e0eb4cc"
-                },
-                {
-                  "title": "Apple juice",
-                  "measure": "1 cl ",
-                  "ingredientId": "64aebb7f82d96cc69e0eb4d1"
-                },
-                {
-                  "title": "Maraschino cherry",
-                  "measure": "1 ",
-                  "ingredientId": "64f1d5d569d8333cf130fcc3"
-                }
-              ],
-              "shortDescription": "A citrusy and refreshing cocktail with vodka, grapefruit juice, and lime juice.",
-              "favorites": [
-                "650ed87d999ecdc8726b5860",
-                "650c80426c3c09abd848e590"
-              ],
-              "updatedAt": "2023-09-24T15:50:46.405Z",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg",
               "populate": 1
             }
           ]
