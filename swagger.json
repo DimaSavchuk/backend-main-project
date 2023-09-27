@@ -748,25 +748,20 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
-          "email": {
+          "name": {
             "type": "string",
-            "description": "User's email",
-            "format": "email"
+            "description": "User's Name",
+            "example": "OurUser"
           },
           "password": {
             "type": "string",
             "description": "User's password hash",
             "example": "qwe/A554rty1DDddgG23"
           },
-          "name": {
+          "email": {
             "type": "string",
-            "description": "User's Name",
-            "example": "OurUser"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "URL from saved User's avatar",
-            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+            "description": "User's email",
+            "format": "email"
           },
           "birthDate": {
             "type": "number",
@@ -777,8 +772,37 @@
             "type": "boolean",
             "description": "Our User adult or not adult",
             "example": false
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "URL from saved User's avatar",
+            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User's ID",
+            "example": "6513SSfG1ae089c19dMnv"
           }
-        }
+        },
+        "example": [
+          {
+            "status": "success",
+            "code": 201,
+            "data": {
+              "name": "Sergii",
+              "password": "$2b$12$IpuEuJSaC4hLr9XUQe4Ekunk4yj8rz9WY43n7Tbsv/GKiCwGC3mnC",
+              "email": "core4@mail.com",
+              "subscriptionEmail": "",
+              "birthDate": 1000924800,
+              "adult": true,
+              "token": "",
+              "avatarURL": "//www.gravatar.com/avatar/49795700c783bd680baa016a0d392f18",
+              "_id": "65131ae06fd89c19d0cfd2f5",
+              "createdAt": "2023-09-26T17:54:40.136Z",
+              "updatedAt": "2023-09-26T17:54:40.136Z"
+            }
+          }
+        ]
       },
       "LoginRequest": {
         "type": "object",
@@ -829,7 +853,7 @@
           {
             "token": "eyJhbGciOiJI1NiIsInR5cCI6IkpXVCJ9.eyJI6IjY1MTE1YmZlMDFmNDM0ZWYwZmVmNjI0NSIsImlhdCI6MTY5NTYzNjU2OSwiZXhwIjoxNjk1NzA4NTY5fQ.tDMqO0yqfbnmMWeN4D3hJ80M-qZWx6AnW7dWDew",
             "user": {
-              "email": "user@example.com",
+              "email": "core4@mail.com",
               "adult": "true",
               "id": "639b6de9ff77d221f190c50f"
             }
@@ -869,12 +893,35 @@
       "SubscribeResponse": {
         "type": "object",
         "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code of response status",
+            "example": "200"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "Subscription email sent successfully"
+          },
           "email": {
             "type": "string",
             "description": "User's e-mail for which subscribed ",
             "format": "email"
           }
-        }
+        },
+        "example": [
+          {
+            "status": "success",
+            "code": 200,
+            "message": "Subscription email sent successfully.",
+            "email": "vamad43001@cdeter.com"
+          }
+        ]
       },
       "UpdateProfileRequest": {
         "type": "object",
@@ -1606,31 +1653,31 @@
         },
         "example": {
           "code": 200,
-    "message": "Success operation",
-    "data": {
-        "_id": "65132aa5af788399d0f70bd7",
-        "drink": "My Drink 6",
-        "tags": "Handmade product",
-        "category": "havy drink",
-        "alcoholic": "alcoholic",
-        "glass": "tank",
-        "description": "havy alcohol",
-        "instructions": "mixed all",
-        "instructionsUK": "горілка і ще раз горілка",
-        "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
-        "ingredients": [
-            {
+          "message": "Success operation",
+          "data": {
+            "_id": "65132aa5af788399d0f70bd7",
+            "drink": "My Drink 6",
+            "tags": "Handmade product",
+            "category": "havy drink",
+            "alcoholic": "alcoholic",
+            "glass": "tank",
+            "description": "havy alcohol",
+            "instructions": "mixed all",
+            "instructionsUK": "горілка і ще раз горілка",
+            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
+            "ingredients": [
+              {
                 "title": "whisky",
                 "measure": "10 oz.",
                 "ingredientId": "64aebb7f82d96cc69e0eb4fa"
-            }
-        ],
-        "favorites": [],
-        "shortDescription": "seas of whisky",
-        "owner": "650c80426c3c09abd848e590",
-        "createdAt": "2023-09-26T19:01:57.782Z",
-        "updatedAt": "2023-09-26T19:01:57.782Z"
-    }
+              }
+            ],
+            "favorites": [],
+            "shortDescription": "seas of whisky",
+            "owner": "650c80426c3c09abd848e590",
+            "createdAt": "2023-09-26T19:01:57.782Z",
+            "updatedAt": "2023-09-26T19:01:57.782Z"
+          }
         }
       },
       "getPopularResponse": {
@@ -1751,14 +1798,14 @@
           "message": "Success operation",
           "count": 1,
           "data": [
-              {
-                  "_id": "639b6de9ff77d221f190c51f",
-                  "drink": "Apello",
-                  "category": "Other/Unknown",
-                  "alcoholic": "Non alcoholic",
-                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg",
-                  "populate": 1
-              }
+            {
+              "_id": "639b6de9ff77d221f190c51f",
+              "drink": "Apello",
+              "category": "Other/Unknown",
+              "alcoholic": "Non alcoholic",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg",
+              "populate": 1
+            }
           ]
         }
       },
