@@ -9,7 +9,7 @@ const { SENDGRID_API_KEY } = process.env;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const subscribeEmail = async (req, res) => {
-  console.log(req.body);
+  const { name } = req.user;
   const { email } = req.body;
 
   if (!email) {
@@ -39,11 +39,12 @@ const subscribeEmail = async (req, res) => {
             font-size: 40px;
             font-weight: 600;
             line-height: 1.1;
-          ">Welcome!</h2>
+          ">Welcome, ${name}!</h2>
         <p style="
             font-size: 17px;
             line-height: 1.56;
             color: rgba(243, 243, 243, 0.5);
+            padding: 20px;
           ">You have subscribed to the address: ${email}. Thank you for subscribing to our content! 
          Until the new meetings to "Drink Master"</p>
         <a href="https://dimasavchuk.github.io/Drink_master/drinks"
