@@ -16,7 +16,6 @@ router.post(
 );
 router.post(
   "/signin",
-  auth,
   validateBody(loginSchema),
   errorHandler(controller.login)
 );
