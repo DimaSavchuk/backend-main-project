@@ -381,14 +381,16 @@
         }
       }
     },
-    "/drinks/byid/:recipeId": {
+
+    "/api/drinks/{recipeId}": {
+
       "get": {
         "tags": ["Drinks"],
         "summary": "Object of recipe drink",
         "parameters": [
           {
-            "name": "id",
-            "in": "params",
+            "name": "recipeId",
+            "in": "path",
             "schema": { "type": "string" },
             "description": "Example value",
             "value": "639b6de9ff77d221f190c50f"

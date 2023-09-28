@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+// const Joi = require("joi");
 const errorMongooseHandler = require("../helpers/errorMongooseHandler");
 
 const ingredientsSchema = new Schema({
@@ -37,8 +37,8 @@ const ingredientsSchema = new Schema({
 
 ingredientsSchema.post("save", errorMongooseHandler);
 
-const ingredientsModel = model("ingredients", ingredientsSchema);
+const IngredientsModel = model("ingredients", ingredientsSchema);
 
 module.exports = {
-  ingredientsModel,
+  IngredientsModel,
 };

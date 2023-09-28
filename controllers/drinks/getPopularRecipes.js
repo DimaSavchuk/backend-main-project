@@ -1,4 +1,4 @@
-const { recipesModel } = require('../../models/recipesModel');
+const { RecipesModel } = require('../../models/RecipesModel');
 const HttpError = require('../../helpers/HttpError');
 
 const getPopularRecipes = async (req, res) => {
@@ -7,7 +7,7 @@ const getPopularRecipes = async (req, res) => {
     let getByCondition = { populate: {$gte : 0}, alcoholic: "Non alcoholic" };
     if (adult) { getByCondition = { populate: {$gte : 0} } };
 
-    const recipes = await recipesModel.find(getByCondition, 
+    const recipes = await RecipesModel.find(getByCondition, 
         {drink:1, category:1,alcoholic:1, populate:1, description:1, drinkThumb:1 }).sort({populate:-1})
 
     if (!recipes) {
