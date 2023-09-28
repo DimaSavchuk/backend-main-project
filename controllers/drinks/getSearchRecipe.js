@@ -3,14 +3,27 @@ const HttpError = require('../../helpers/HttpError');
 
 const getSearchRecipe = async (req, res) => {
     const { adult } = req.user;
-    console.log('req body', req.body);
+    const { page = 1, limit = 10 } = req.query;
+    let skip = (page - 1) * limit;
     // const  adult=false;
-    let getByCondition = { ...req.body, alcoholic: "Non alcoholic" };
-    if (adult) { getByCondition = { ...req.body } };
+    const keys = Object.keys(req.query);
+    let paramSearch = {};
+    for ( const key of keys) { 
+//  if (key !=='limit' || key !=='page') { 
+//      paramSearch = { ...paramSearch, [key]: req.query[key] }  }
+        if (key ==='limit' || key ==='page') {   }
+    else { 
+        paramSearch = { ...paramSearch, [key]: { $regex: new RegExp(req.query[key],"i") } } };
+    }
 
-    // const recipes = await recipesModel.find({ $or:[{...req.body}]});
-     const recipes = await recipesModel.find(getByCondition,
-        {drink:1, drinkThumb:1, category:1, alcoholic:1, populate:1}).sort({populate:-1})
+    let getByCondition = { ...paramSearch, alcoholic: "Non alcoholic" };
+    if (adult) { getByCondition = { ...paramSearch } };
+    
+    const resultCount = await recipesModel.find(getByCondition).count();
+    if (skip >= resultCount) { if (resultCount<limit){ skip = 0 } else { skip = resultCount - limit} }
+
+      const recipes = await recipesModel.find(getByCondition,
+         {drink:1, drinkThumb:1, category:1, alcoholic:1, populate:1},{skip,limit}).sort({populate:-1})
 
     if (!recipes || !recipes.length) {
         throw HttpError(404, "Not found, try again");
@@ -18,7 +31,8 @@ const getSearchRecipe = async (req, res) => {
     res.status(200).json({
         code: 200,
         message: 'Success operation',
-        count: recipes.length,
+        quantityPerPage: recipes.length,
+        quantityTotal: resultCount,
         data: recipes,
     });
 }
