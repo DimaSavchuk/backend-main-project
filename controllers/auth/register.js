@@ -1,19 +1,14 @@
-const { registerSchema } = require("../../models/user");
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/user");
+const { User } = require("../../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
 
 const register = async (req, res) => {
   const { email, password, name, birthDate } = req.body;
 
-  const { error } = registerSchema.validate(req.body);
-  if (error) {
-    error.status = 400;
-    throw error;
-  }
-  const user = await User.findOne({ email });
-  if (user) {
+  const userEmail = await User.findOne({ email });
+  if (userEmail) {
     throw HttpError(409, "Email in use");
   }
 
@@ -42,10 +37,18 @@ const register = async (req, res) => {
     adult: isAdult,
   });
 
+  const payload = { id: newUser._id };
+  const token = jwt.sign(payload, process.env.SECRET_KEY, {
+    expiresIn: "200h",
+  });
+
+  await User.findByIdAndUpdate(newUser._id, { token });
+  newUser.token = token;
+
   res.status(201).json({
     status: "success",
     code: 201,
-    data: newUser,
+    data: newUser.toObject(),
   });
 };
 

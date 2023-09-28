@@ -1,18 +1,10 @@
-const { loginSchema } = require("../../models/user");
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/user");
+const { User } = require("../../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { log } = require("console");
 
 const login = async (req, res) => {
-  console.log(req.body);
   const { email, password } = req.body;
-  const { error } = loginSchema.validate(req.body);
-  if (error) {
-    error.status = 400;
-    throw error;
-  }
 
   const user = await User.findOne({ email });
   const comparePassword = await bcrypt.compare(password, user.password);
@@ -44,6 +36,7 @@ const login = async (req, res) => {
   });
 
   await User.findByIdAndUpdate(user._id, { token });
+
   res.json({
     token,
     user: {

@@ -1,5 +1,5 @@
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/user");
+const { User } = require("../../models/userModel");
 
 const updateUser = async (req, res) => {
   const { name } = req.body;

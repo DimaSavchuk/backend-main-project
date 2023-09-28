@@ -2,7 +2,7 @@ const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/user");
+const { User } = require("../../models/userModel");
 
 const { SENDGRID_API_KEY } = process.env;
 
@@ -14,6 +14,12 @@ const subscribeEmail = async (req, res) => {
 
   if (!email) {
     throw HttpError(400, "Email is required");
+  }
+
+  const existingSubscriber = await User.findOne({ subscriptionEmail: email });
+
+  if (existingSubscriber) {
+    throw HttpError(409, "This email-address is already subscribed");
   }
 
   const msg = {

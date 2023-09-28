@@ -7,7 +7,10 @@ const errorHandler = require("../../helpers/errorHandler");
 const upload = require("../../middlewares/upload");
 
 const { users: controller } = require("../../controllers/index");
-const { updateUserSchema, subscribeEmailSchema } = require("../../models/user");
+const {
+  updateUserSchema,
+  subscribeEmailSchema,
+} = require("../../models/userModel");
 
 router.get("/current", auth, errorHandler(controller.getCurrent));
 router.patch(
@@ -23,6 +26,5 @@ router.post(
   validateBody(subscribeEmailSchema),
   errorHandler(controller.subscribeEmail)
 );
-router.post("/subscribe", auth, errorHandler(controller.updateSubscription));
 
 module.exports = router;
