@@ -1,5 +1,5 @@
 const HttpError = require("../../helpers/HttpError");
-const { IngredientsModel } = require("../../models/ingredientsModel");
+const { IngredientsModel } = require("../../models/IngredientsModel");
 
 const getAllIngredients = async (req, res) => {
   const ingredients = await IngredientsModel.find({}).sort({ title: 1 });
