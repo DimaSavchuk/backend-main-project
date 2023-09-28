@@ -1,5 +1,5 @@
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/UserModel");
+const { UserModel } = require("../../models/UserModel");
 
 const updateUser = async (req, res) => {
   const { name } = req.body;
@@ -14,7 +14,7 @@ const updateUser = async (req, res) => {
   if (name) updates.name = name;
   if (avatarURL) updates.avatarURL = avatarURL;
 
-  const user = await User.findByIdAndUpdate(
+  const user = await UserModel.findByIdAndUpdate(
     req.user._id,
     { $set: updates },
     { new: true }

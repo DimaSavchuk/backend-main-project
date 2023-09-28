@@ -97,7 +97,7 @@ const schemaAddRecipe = Joi.object({
   shortDescription: Joi.string(),
 });
 
-const RecipesModel = model("Recipes", recipesSchema);
+const RecipesModel = model("recipes", recipesSchema);
 
 module.exports = {
   RecipesModel,

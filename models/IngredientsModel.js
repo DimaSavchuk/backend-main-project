@@ -37,7 +37,7 @@ const ingredientsSchema = new Schema({
 
 ingredientsSchema.post("save", errorMongooseHandler);
 
-const IngredientsModel = model("Ingredients", ingredientsSchema);
+const IngredientsModel = model("ingredients", ingredientsSchema);
 
 module.exports = {
   IngredientsModel,

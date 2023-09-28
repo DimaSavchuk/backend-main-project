@@ -113,10 +113,10 @@ const subscribeEmailSchema = Joi.object({
   }),
 });
 
-const User = model("User", userSchema);
+const UserModel = model("user", userSchema);
 
 module.exports = {
-  User,
+  UserModel,
   registerSchema,
   loginSchema,
   updateUserSchema,

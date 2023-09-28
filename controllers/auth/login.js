@@ -1,12 +1,12 @@
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/UserModel");
+const { UserModel } = require("../../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await UserModel.findOne({ email });
   const comparePassword = await bcrypt.compare(password, user.password);
   if (!user || !comparePassword) {
     throw HttpError(401, "Email, password is wrong or not verify.");
@@ -26,7 +26,7 @@ const login = async (req, res) => {
         : 0);
 
     if (age >= 18 && !user.adult) {
-      await User.findByIdAndUpdate(user._id, { adult: true });
+      await UserModel.findByIdAndUpdate(user._id, { adult: true });
     }
   }
 
@@ -35,7 +35,7 @@ const login = async (req, res) => {
     expiresIn: "200h",
   });
 
-  await User.findByIdAndUpdate(user._id, { token });
+  await UserModel.findByIdAndUpdate(user._id, { token });
 
   res.json({
     token,

@@ -1,5 +1,5 @@
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/UserModel");
+const { UserModel } = require("../../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
@@ -7,7 +7,7 @@ const gravatar = require("gravatar");
 const register = async (req, res) => {
   const { email, password, name, birthDate } = req.body;
 
-  const userEmail = await User.findOne({ email });
+  const userEmail = await UserModel.findOne({ email });
   if (userEmail) {
     throw HttpError(409, "Email in use");
   }
@@ -28,7 +28,7 @@ const register = async (req, res) => {
 
   const isAdult = age >= 18;
 
-  const newUser = await User.create({
+  const newUser = await UserModel.create({
     email,
     password: hashPassword,
     name,
@@ -42,7 +42,7 @@ const register = async (req, res) => {
     expiresIn: "200h",
   });
 
-  await User.findByIdAndUpdate(newUser._id, { token });
+  await UserModel.findByIdAndUpdate(newUser._id, { token });
   newUser.token = token;
 
   res.status(201).json({
