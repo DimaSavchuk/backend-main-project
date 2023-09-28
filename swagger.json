@@ -12,8 +12,8 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "http://localhost:3000" },
-    { "url": "https://rest-api-drink-master.onrender.com" }
+    { "url": "http://localhost:3000/api" },
+    { "url": "https://rest-api-drink-master.onrender.com/api" }
   ],
 
   "tags": [
@@ -35,7 +35,7 @@
     }
   ],
   "paths": {
-    "/api/auth/signup": {
+    "/auth/signup": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -73,7 +73,7 @@
         }
       }
     },
-    "/api/auth/signin": {
+    "/auth/signin": {
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
@@ -111,7 +111,7 @@
         }
       }
     },
-    "/api/auth/signout": {
+    "/auth/signout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -140,7 +140,7 @@
         }
       }
     },
-    "/api/users/current": {
+    "/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get current User information",
@@ -168,7 +168,7 @@
         }
       }
     },
-    "/api/users/update": {
+    "/users/update": {
       "patch": {
         "tags": ["Users"],
         "summary": "User profile update",
@@ -211,7 +211,7 @@
         }
       }
     },
-    "/api/users/subscribe": {
+    "/users/subscribe": {
       "post": {
         "tags": ["Users"],
         "summary": "User subscription to e-mails",
@@ -246,12 +246,16 @@
           "401": {
             "description": "Not authorized",
             "content": {}
+          },
+          "409": {
+            "description": "This email-address is already subscribed",
+            "content": {}
           }
         }
       }
     },
 
-    "/api/filters/categories": {
+    "/filters/categories": {
       "get": {
         "tags": ["Filters"],
         "summary": "Get a list of all categories",
@@ -279,7 +283,7 @@
         }
       }
     },
-    "/api/filters/ingredients": {
+    "/filters/ingredients": {
       "get": {
         "tags": ["Filters"],
         "summary": "Get a list of all ingredients",
@@ -307,7 +311,7 @@
         }
       }
     },
-    "/api/filters/glasses": {
+    "/filters/glasses": {
       "get": {
         "tags": ["Filters"],
         "summary": "Get a list of all glasses",
@@ -336,7 +340,7 @@
       }
     },
 
-    "/api/drinks/mainpage": {
+    "/drinks/mainpage": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Array of objects All recipes drinks",
@@ -377,7 +381,9 @@
         }
       }
     },
+
     "/api/drinks/{recipeId}": {
+
       "get": {
         "tags": ["Drinks"],
         "summary": "Object of recipe drink",
@@ -409,7 +415,7 @@
         }
       }
     },
-    "/api/drinks/own": {
+    "/drinks/own": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Array of objects only User recipes drinks",
@@ -437,7 +443,7 @@
         }
       }
     },
-    "/api/drinks/own/add": {
+    "/drinks/own/add": {
       "post": {
         "tags": ["Drinks"],
         "summary": "Add User's recipe",
@@ -476,7 +482,7 @@
         }
       }
     },
-    "/api/drinks/own/remove": {
+    "/drinks/own/remove": {
       "delete": {
         "tags": ["Drinks"],
         "summary": "Remove User's recipe",
@@ -515,7 +521,7 @@
         }
       }
     },
-    "/api/drinks/favorite": {
+    "/drinks/favorite": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Array of objects only User's favorite drinks",
@@ -543,7 +549,7 @@
         }
       }
     },
-    "/api/drinks/favorite/add": {
+    "/drinks/favorite/add": {
       "post": {
         "tags": ["Drinks"],
         "summary": "Add User's favorite recipe",
@@ -582,7 +588,7 @@
         }
       }
     },
-    "/api/drinks/favorite/remove": {
+    "/drinks/favorite/remove": {
       "delete": {
         "tags": ["Drinks"],
         "summary": "Remove User's favorite recipe",
@@ -621,7 +627,7 @@
         }
       }
     },
-    "/api/drinks/popular": {
+    "/drinks/popular": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Get array of popular recipes",
@@ -649,7 +655,7 @@
         }
       }
     },
-    "/api/drinks/search": {
+    "/drinks/search": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Search recipes",
@@ -709,7 +715,7 @@
         }
       }
     },
-    "/api/drinks/homepage": {
+    "/drinks/homepage": {
       "get": {
         "tags": ["Drinks"],
         "summary": "Array of objects recipes drinks by Categories",
@@ -769,25 +775,20 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
-          "email": {
+          "name": {
             "type": "string",
-            "description": "User's email",
-            "format": "email"
+            "description": "User's Name",
+            "example": "OurUser"
           },
           "password": {
             "type": "string",
             "description": "User's password hash",
             "example": "qwe/A554rty1DDddgG23"
           },
-          "name": {
+          "email": {
             "type": "string",
-            "description": "User's Name",
-            "example": "OurUser"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "URL from saved User's avatar",
-            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+            "description": "User's email",
+            "format": "email"
           },
           "birthDate": {
             "type": "number",
@@ -798,6 +799,38 @@
             "type": "boolean",
             "description": "Our User adult or not adult",
             "example": false
+          },
+          "token": {
+            "type": "string",
+            "description": "User's session's token",
+            "example": "Ouzzfdf6545464FFFFser"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "URL from saved User's avatar",
+            "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
+          },
+          "_id": {
+            "type": "string",
+            "description": "User's ID",
+            "example": "6513SSfG1ae089c19dMnv"
+          }
+        },
+        "example": {
+          "status": "success",
+          "code": 201,
+          "data": {
+            "name": "Name OurUser",
+            "password": "$2b$12$IpuEuJSaC4hLr9XUQe4Ekunk4yj8rz9WY43n7Tbsv/GKiCwGC3mnC",
+            "email": "address@mail.com",
+            "subscriptionEmail": "",
+            "birthDate": 1000924800,
+            "adult": true,
+            "token": "eyJhbIUzI1NiIsInR59.JIUzI1NiIsInR5cCI6Ik.eGciOiJIUzI1NiIsInR5cCICJ9",
+            "avatarURL": "//www.someavatar.com/avatar/49795700c783bd680baa016a0d392f18",
+            "_id": "65131ae06fd89c19d0cfd2f5",
+            "createdAt": "2023-09-26T17:54:40.136Z",
+            "updatedAt": "2023-09-26T17:54:40.136Z"
           }
         }
       },
@@ -833,6 +866,11 @@
                 "description": "User's email",
                 "format": "email"
               },
+              "name": {
+                "type": "string",
+                "description": "User's Name",
+                "example": "OurUser"
+              },
               "adult": {
                 "type": "boolean",
                 "description": "Our User adult or not adult",
@@ -846,16 +884,15 @@
             }
           }
         },
-        "example": [
-          {
-            "token": "eyJhbGciOiJI1NiIsInR5cCI6IkpXVCJ9.eyJI6IjY1MTE1YmZlMDFmNDM0ZWYwZmVmNjI0NSIsImlhdCI6MTY5NTYzNjU2OSwiZXhwIjoxNjk1NzA4NTY5fQ.tDMqO0yqfbnmMWeN4D3hJ80M-qZWx6AnW7dWDew",
-            "user": {
-              "email": "user@example.com",
-              "adult": "true",
-              "id": "639b6de9ff77d221f190c50f"
-            }
+        "example": {
+          "token": "eyJhbGciOiJI1NiIsInR5cCI6IkpXVCJ9.eyJI6IjY1MTE1YmZlMDFmNDM0ZWYwZmVmNjI0NSIsImlhdCI6MTY5NTYzNjU2OSwiZXhwIjoxNjk1NzA4NTY5fQ.tDMqO0yqfbnmMWeN4D3hJ80M-qZWx6AnW7dWDew",
+          "user": {
+            "email": "adress@mail.com",
+            "name": "Name OurUser",
+            "adult": "true",
+            "id": "639b6de9ff77d221f190c50f"
           }
-        ]
+        }
       },
       "LogoutResponse": {
         "type": "object",
@@ -890,12 +927,35 @@
       "SubscribeResponse": {
         "type": "object",
         "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code of response status",
+            "example": "200"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "Subscription email sent successfully"
+          },
           "email": {
             "type": "string",
             "description": "User's e-mail for which subscribed ",
             "format": "email"
           }
-        }
+        },
+        "example": [
+          {
+            "status": "success",
+            "code": 200,
+            "message": "Subscription email sent successfully.",
+            "email": "address@temp-mail.com"
+          }
+        ]
       },
       "UpdateProfileRequest": {
         "type": "object",
@@ -1627,31 +1687,31 @@
         },
         "example": {
           "code": 200,
-    "message": "Success operation",
-    "data": {
-        "_id": "65132aa5af788399d0f70bd7",
-        "drink": "My Drink 6",
-        "tags": "Handmade product",
-        "category": "havy drink",
-        "alcoholic": "alcoholic",
-        "glass": "tank",
-        "description": "havy alcohol",
-        "instructions": "mixed all",
-        "instructionsUK": "горілка і ще раз горілка",
-        "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
-        "ingredients": [
-            {
+          "message": "Success operation",
+          "data": {
+            "_id": "65132aa5af788399d0f70bd7",
+            "drink": "My Drink 6",
+            "tags": "Handmade product",
+            "category": "havy drink",
+            "alcoholic": "alcoholic",
+            "glass": "tank",
+            "description": "havy alcohol",
+            "instructions": "mixed all",
+            "instructionsUK": "горілка і ще раз горілка",
+            "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/cocktails/image2.jpg.jpg",
+            "ingredients": [
+              {
                 "title": "whisky",
                 "measure": "10 oz.",
                 "ingredientId": "64aebb7f82d96cc69e0eb4fa"
-            }
-        ],
-        "favorites": [],
-        "shortDescription": "seas of whisky",
-        "owner": "650c80426c3c09abd848e590",
-        "createdAt": "2023-09-26T19:01:57.782Z",
-        "updatedAt": "2023-09-26T19:01:57.782Z"
-    }
+              }
+            ],
+            "favorites": [],
+            "shortDescription": "seas of whisky",
+            "owner": "650c80426c3c09abd848e590",
+            "createdAt": "2023-09-26T19:01:57.782Z",
+            "updatedAt": "2023-09-26T19:01:57.782Z"
+          }
         }
       },
       "getPopularResponse": {
@@ -1772,14 +1832,14 @@
           "message": "Success operation",
           "count": 1,
           "data": [
-              {
-                  "_id": "639b6de9ff77d221f190c51f",
-                  "drink": "Apello",
-                  "category": "Other/Unknown",
-                  "alcoholic": "Non alcoholic",
-                  "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg",
-                  "populate": 1
-              }
+            {
+              "_id": "639b6de9ff77d221f190c51f",
+              "drink": "Apello",
+              "category": "Other/Unknown",
+              "alcoholic": "Non alcoholic",
+              "drinkThumb": "https://res.cloudinary.com/dgooxm96o/image/upload/v1695488903/drinks/Apello.jpg.jpg",
+              "populate": 1
+            }
           ]
         }
       },
