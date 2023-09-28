@@ -80,29 +80,26 @@ const recipesSchema = new Schema(
         timestamps: true,
     }
 );
-recipesSchema.methods.popularRating = function(){
-    return `${this.favorites.length}`;
-}
 
 recipesSchema.post("save", errorMongooseHandler);
 
-const schema = Joi.object({
+const schemaAddRecipe = Joi.object({
     drink: Joi.string().required(),
-    tags: Joi.string().required(),
+    tags: Joi.string(),
     category: Joi.string().required(),
     alcoholic: Joi.string().required(),
     glass: Joi.string().required(),
     description: Joi.string().required(),
     instructions: Joi.string().required(),
-    instructionsUK: Joi.string().required(),
-    drinkThumb: Joi.string().required(),
+    instructionsUK: Joi.string(),
+    drinkThumb: Joi.string(),
     ingredients: Joi.array().required(),
-    shortDescription: Joi.string().required(),
+    shortDescription: Joi.string(),
 });
 
-const recipesModel = model('recipes', recipesSchema);
+const RecipesModel = model('recipes', recipesSchema);
 
 module.exports = {
-    recipesModel,
-    schema,
+    RecipesModel,
+    schemaAddRecipe,
 };

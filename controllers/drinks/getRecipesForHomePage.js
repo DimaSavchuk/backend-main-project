@@ -1,4 +1,4 @@
-const { recipesModel } = require('../../models/recipesModel');
+const { RecipesModel } = require('../../models/RecipesModel');
 const  HttpError = require('../../helpers/HttpError');
 
 const getRecipesForHomePage = async (req, res) => {
@@ -8,18 +8,18 @@ const getRecipesForHomePage = async (req, res) => {
     let getByCondition = { alcoholic: "Non alcoholic" };
     if (adult) { getByCondition = {} };
 
-const categories = await recipesModel.distinct("category");
+const categories = await RecipesModel.distinct("category");
 
 const homeList = [];
 let itemCount = 0;
 for (const item of categories) {
-   const drinks=await recipesModel.find({ $and:[ {category:item}, getByCondition ]}, {drink:1, drinkThumb:1}).limit(3)
+   const drinks=await RecipesModel.find({ $and:[ {category:item}, getByCondition ]}, {drink:1, drinkThumb:1}).limit(3)
     itemCount = itemCount + drinks.length;
   if (drinks.length) {
     homeList.push({category:item, drinks})
     }
 }
- const totalCount = await recipesModel.count();
+ const totalCount = await RecipesModel.count();
  if (!homeList.length) {
    throw HttpError(404, 'Not found');
 }

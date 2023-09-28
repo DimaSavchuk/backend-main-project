@@ -1,11 +1,7 @@
 const express = require("express");
-const auth = require("../../middlewares/auth");
-const validateBody = require("../../middlewares/validateBody");
-
 const router = express.Router();
+const { auth, validateBody, upload } = require("../../middlewares");
 const errorHandler = require("../../helpers/errorHandler");
-const upload = require("../../middlewares/upload");
-
 const { users: controller } = require("../../controllers/index");
 const { updateUserSchema, subscribeEmailSchema } = require("../../models/user");
 

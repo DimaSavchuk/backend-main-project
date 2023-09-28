@@ -1,4 +1,4 @@
-const { recipesModel } = require('../../models/recipesModel');
+const { RecipesModel } = require('../../models/RecipesModel');
 const HttpError = require('../../helpers/HttpError');
 
 const getSearchRecipe = async (req, res) => {
@@ -8,22 +8,20 @@ const getSearchRecipe = async (req, res) => {
     // const  adult=false;
     const keys = Object.keys(req.query);
     let paramSearch = {};
-    for ( const key of keys) { 
-//  if (key !=='limit' || key !=='page') { 
-//      paramSearch = { ...paramSearch, [key]: req.query[key] }  }
-        if (key ==='limit' || key ==='page') {   }
-    else { 
-        paramSearch = { ...paramSearch, [key]: { $regex: new RegExp(req.query[key],"i") } } };
+    for (const key of keys) {
+        if (key === 'drink' || key === 'category' || key === 'ingredients.title') {
+            paramSearch = { ...paramSearch, [key]: { $regex: new RegExp(req.query[key], "i") } }
+        };
     }
 
     let getByCondition = { ...paramSearch, alcoholic: "Non alcoholic" };
     if (adult) { getByCondition = { ...paramSearch } };
-    
-    const resultCount = await recipesModel.find(getByCondition).count();
-    if (skip >= resultCount) { if (resultCount<limit){ skip = 0 } else { skip = resultCount - limit} }
 
-      const recipes = await recipesModel.find(getByCondition,
-         {drink:1, drinkThumb:1, category:1, alcoholic:1, populate:1},{skip,limit}).sort({populate:-1})
+    const resultCount = await RecipesModel.find(getByCondition).count();
+    if (skip >= resultCount) { if (resultCount < limit) { skip = 0 } else { skip = resultCount - limit } }
+
+    const recipes = await RecipesModel.find(getByCondition,
+        { drink: 1, drinkThumb: 1, category: 1, alcoholic: 1, populate: 1 }, { skip, limit }).sort({ populate: -1 })
 
     if (!recipes || !recipes.length) {
         throw HttpError(404, "Not found, try again");

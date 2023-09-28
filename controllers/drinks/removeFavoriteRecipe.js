@@ -1,11 +1,11 @@
-const { recipesModel } = require('../../models/recipesModel');
+const { RecipesModel } = require('../../models/RecipesModel');
 const  HttpError = require('../../helpers/HttpError');
 
 const removeFavoriteRecipe = async (req, res) => {
     const { recipeId } = req.body;
      const userId = req.user.id;
     // const  userId  ="650c58ce53146d03476d1d1c"
-    const recipe = await recipesModel.findById(recipeId);
+    const recipe = await RecipesModel.findById(recipeId);
 
     console.log('remove favor recipe',recipe);
     if (!recipe) {

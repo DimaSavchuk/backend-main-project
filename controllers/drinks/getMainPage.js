@@ -1,4 +1,4 @@
-const { recipesModel } = require('../../models/recipesModel');
+const { RecipesModel } = require('../../models/RecipesModel');
 const  HttpError = require('../../helpers/HttpError');
 
 const getMainPage = async (req, res) => {
@@ -9,8 +9,8 @@ const getMainPage = async (req, res) => {
     let getByCondition = { alcoholic: "Non alcoholic" };
     if (adult) { getByCondition = {} };
 
- const totalCount = await recipesModel.count();
- const drinks = await recipesModel.find(getByCondition,{
+ const totalCount = await RecipesModel.count();
+ const drinks = await RecipesModel.find(getByCondition,{
    drink:1, drinkThumb:1},{skip,limit}).sort({category:1});
  if (!drinks) {
    throw HttpError(404, 'Not found');
