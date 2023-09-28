@@ -6,7 +6,7 @@ const { users: controller } = require("../../controllers/index");
 const {
   updateUserSchema,
   subscribeEmailSchema,
-} = require("../../models/userModel");
+} = require("../../models/UserModel");
 
 router.get("/current", auth, errorHandler(controller.getCurrent));
 router.patch(

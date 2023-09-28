@@ -2,7 +2,7 @@ const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const HttpError = require("../../helpers/HttpError");
-const { User } = require("../../models/userModel");
+const { User } = require("../../models/UserModel");
 
 const { SENDGRID_API_KEY } = process.env;
 

@@ -5,7 +5,7 @@ const { auth, validateBody } = require("../../middlewares");
 const { auth: controller } = require("../../controllers/index");
 const errorHandler = require("../../helpers/errorHandler");
 
-const { registerSchema, loginSchema } = require("../../models/userModel");
+const { registerSchema, loginSchema } = require("../../models/UserModel");
 
 router.post(
   "/signup",
