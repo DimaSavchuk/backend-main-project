@@ -37,6 +37,8 @@ const login = async (req, res) => {
 
   await UserModel.findByIdAndUpdate(user._id, { token });
 
+  // console.log(user);
+
   res.json({
     token,
     user: {
@@ -44,6 +46,7 @@ const login = async (req, res) => {
       name: user.name,
       adult: user.adult,
       id: user._id,
+      avatarURL: user.avatarURL,
     },
   });
 };
