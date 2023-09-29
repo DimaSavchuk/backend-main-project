@@ -9,7 +9,6 @@ const getRecipesForHomePage = async (req, res) => {
     if (adult) { getByCondition = {} };
 
 const categories = await RecipesModel.distinct("category");
-
 const homeList = [];
 let itemCount = 0;
 for (const item of categories) {

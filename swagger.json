@@ -1305,7 +1305,9 @@
         "properties": {
           "drink": {
             "type": "string",
-            "description": "Name of drink"
+            "description": "Name of drink",
+            "required": true,
+            "minLength": 1
           },
           "tags": {
             "type": "string",
@@ -1313,29 +1315,39 @@
           },
           "category": {
             "type": "string",
-            "description": "category coctail"
+            "description": "category coctail",
+            "required": true,
+            "enum": ["Beer", "Cocktail", "Cocoa", "Coffee / Tea", "Coffee/Tea", "Homemade Liqueur",
+            "Ordinary Drink", "Other/Unknown", "Punch / Party Drink", "Shake", "Shot", "Soft Drink"]
           },
           "alcoholic": {
             "type": "string",
-            "description": "type coctail, alcoholic or non-alcoholic"
+            "description": "type coctail, alcoholic or non-alcoholic",
+            "required": true,
+            "enum": ["Alcoholic","Non alcoholic","Optional alcohol"]
           },
           "glass": {
             "type": "string",
-            "description": "type glass"
+            "description": "type glass",
+            "required": true,
+            "enum": ["Beer", "Cocktail", "Cocoa", "Coffee / Tea", "Coffee/Tea", "Homemade Liqueur", "Ordinary Drink",
+            "Other/Unknown", "Punch / Party Drink", "Shake", "Shot", "Soft Drink"]
           },
           "description": {
             "type": "string",
-            "description": "Description coctail"
+            "description": "Description coctail",
+            "required": true
           },
           "instructions": {
             "type": "string",
-            "description": "Instructions for make coctail"
+            "description": "Instructions for make coctail",
+            "required": true
           },
           "instructionsUK": {
             "type": "string",
             "description": "Instructions for make coctail on Ukrainian language"
           },
-          "drinkThumb": {
+          "cocktail": {
             "type": "string",
             "format": "binary",
             "description": "User's coctail photo file"

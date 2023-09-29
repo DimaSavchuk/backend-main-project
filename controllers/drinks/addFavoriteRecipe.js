@@ -3,8 +3,7 @@ const  HttpError = require('../../helpers/HttpError');
 
 const addFavoriteRecipe = async (req, res) => {
     const { recipeId } = req.body;
-     const userId = req.user.id;
-    // const  userId  ="650c58ce53146d03476d1d"
+    const userId = req.user.id;
     const recipe = await RecipesModel.findById(recipeId);
     const idx = recipe.favorites.findIndex(elem => elem === userId );
     if ( idx < 0) { recipe.favorites.push(userId);
