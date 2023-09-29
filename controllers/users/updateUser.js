@@ -2,28 +2,6 @@ const HttpError = require("../../helpers/HttpError");
 const { UserModel } = require("../../models/UserModel");
 
 const updateUser = async (req, res) => {
-  // const { name } = req.body;
-
-  // if (!req.file || !req.file.path) {
-  //   throw HttpError(400, "File is required for this request");
-  // }
-
-  // const avatarURL = req.file.path;
-
-  // let updates = {};
-  // if (name) updates.name = name;
-  // if (avatarURL) updates.avatarURL = avatarURL;
-
-  // const user = await UserModel.findByIdAndUpdate(
-  //   req.user._id,
-  //   { $set: updates },
-  //   { new: true }
-  // );
-
-  // if (!user) {
-  //   throw HttpError(404, "User not found");
-  // }
-
   const { name } = req.body;
 
   let updates = {};
