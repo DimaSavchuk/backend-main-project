@@ -11,6 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
+
     let folder;
     if (file.fieldname === "avatar") {
       folder = "avatars";
