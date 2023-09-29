@@ -37,8 +37,6 @@ const login = async (req, res) => {
 
   await UserModel.findByIdAndUpdate(user._id, { token });
 
-  // console.log(user);
-
   res.json({
     token,
     user: {
