@@ -1,5 +1,5 @@
-const { RecipesModel, schemaAddRecipe } = require('../../models/RecipesModel');
-const  HttpError = require('../../helpers/HttpError');
+const { RecipesModel, schemaAddRecipe } = require("../../models/RecipesModel");
+const HttpError = require("../../helpers/HttpError");
 
 const addRecipe = async (req, res) => {
 
