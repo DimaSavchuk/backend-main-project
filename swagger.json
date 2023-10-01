@@ -382,7 +382,6 @@
       }
     },
     "/api/drinks/{recipeId}": {
-
       "get": {
         "tags": ["Drinks"],
         "summary": "Object of recipe drink",
@@ -879,6 +878,11 @@
                 "type": "string",
                 "description": "User's ID",
                 "format": "650da7a33b6c4baa23abcb66"
+              },
+              "avatarURL": {
+                "type": "string",
+                "description": "URL from User's avatar",
+                "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
               }
             }
           }
@@ -889,7 +893,8 @@
             "email": "adress@mail.com",
             "name": "Name OurUser",
             "adult": "true",
-            "id": "639b6de9ff77d221f190c50f"
+            "id": "639b6de9ff77d221f190c50f",
+            "avatarURL": "//www.someavatar.com/avatar/49795700c783bd680baa016a0d392f18"
           }
         }
       },

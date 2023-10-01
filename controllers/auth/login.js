@@ -44,6 +44,7 @@ const login = async (req, res) => {
       name: user.name,
       adult: user.adult,
       id: user._id,
+      avatarURL: user.avatarURL,
     },
   });
 };
