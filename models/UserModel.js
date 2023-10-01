@@ -49,6 +49,14 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
     },
+    firstRecipe: {
+      type: Boolean,
+      default: "true",
+    },
+    firstFavorite: {
+      type: Boolean,
+      default: "true",
+    },
   },
   { versionKey: false, timestamps: true }
 );
