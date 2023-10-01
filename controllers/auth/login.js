@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+  let isBirthday = false;
 
   const user = await UserModel.findOne({ email });
   const comparePassword = await bcrypt.compare(password, user.password);
@@ -12,7 +13,7 @@ const login = async (req, res) => {
     throw HttpError(401, "Email, password is wrong or not verify.");
   }
 
-  if (user.birthDate) {
+  if (user.birthDate && !user.adult) {
     const currentDate = new Date();
     const birthDate = new Date(user.birthDate * 1000);
 
@@ -25,9 +26,12 @@ const login = async (req, res) => {
         ? 1
         : 0);
 
-    if (age >= 18 && !user.adult) {
+    if (age >= 18) {
       await UserModel.findByIdAndUpdate(user._id, { adult: true });
     }
+    isBirthday =
+      currentDate.getDate() === birthDate.getDate() &&
+      currentDate.getMonth() === birthDate.getMonth();
   }
 
   const payload = { id: user._id };
@@ -46,6 +50,7 @@ const login = async (req, res) => {
       id: user._id,
       avatarURL: user.avatarURL,
     },
+    isBirthday,
   });
 };
 

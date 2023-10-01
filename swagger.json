@@ -886,6 +886,11 @@
                 "example": "www.cloud.com/avatar/c73e3fb5ccb242540b08931"
               }
             }
+          },
+          "isBirthday": {
+            "type": "string",
+            "description": "was the user’s 18th birthday",
+            "example": "false"
           }
         },
         "example": {
@@ -896,7 +901,8 @@
             "adult": "true",
             "id": "639b6de9ff77d221f190c50f",
             "avatarURL": "//www.someavatar.com/avatar/49795700c783bd680baa016a0d392f18"
-          }
+          },
+          "isBirthday": "false"
         }
       },
       "LogoutResponse": {
