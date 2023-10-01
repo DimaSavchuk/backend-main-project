@@ -8,6 +8,21 @@ const errorMongooseHandler = require("../helpers/errorMongooseHandler");
 // const glassList = ["Beer", "Cocktail", "Cocoa", "Coffee / Tea", "Coffee/Tea", "Homemade Liqueur", "Ordinary Drink",
 //   "Other/Unknown", "Punch / Party Drink", "Shake", "Shot", "Soft Drink"];
 
+const validateIngredients = (value, helpers) => {
+  console.log('joi custom', value);
+  const test = JSON.parse(value);
+  console.log(test);
+  test.map(item => {
+    console.log('item', item);
+    if (item.title || item.measure || item.ingredientId) {
+      console.log('item IF', item.title);
+       return helpers.error('any.invalid')
+    }
+    return value;
+  })
+  
+}
+
 const recipesSchema = new Schema(
   {
     drink: {
@@ -133,7 +148,9 @@ const schemaAddRecipe = Joi.object({
     "string.base": "InstructionsUK should be a type of string",
   }),
   drinkThumb: Joi.string(),
-  ingredients: Joi.string(),
+  ingredients: Joi.string().required().custom(validateIngredients).messages({
+    'any.invalid' : 'Ingredients data are wrong'
+  }),
   shortDescription: Joi.string().messages({
     "string.base": "Short description should be a type of string",
   }),

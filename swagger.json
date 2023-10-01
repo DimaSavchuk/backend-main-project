@@ -339,7 +339,7 @@
         }
       }
     },
-
+    
     "/drinks/mainpage": {
       "get": {
         "tags": ["Drinks"],
@@ -381,7 +381,6 @@
         }
       }
     },
-
     "/api/drinks/{recipeId}": {
       "get": {
         "tags": ["Drinks"],
@@ -1384,7 +1383,8 @@
           "ingredients": {
             "type": "string",
             "format": "JSON",
-            "description": "Масив об'єктів інгрідієнтів коктелю у форматі JSON"
+            "description": "Масив об'єктів інгрідієнтів коктелю у форматі JSON",
+            "example": "[{'title' : 'Strawberry schnapps', 'measure':'10 oz.', 'ingredientId':'64aebb7f82d96cc69e0eb4a9'}]"
           },
           "shortDescription": {
             "type": "string",
