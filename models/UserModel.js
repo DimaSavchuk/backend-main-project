@@ -53,6 +53,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: "true",
     },
+    firstFavorite: {
+      type: Boolean,
+      default: "true",
+    },
   },
   { versionKey: false, timestamps: true }
 );
