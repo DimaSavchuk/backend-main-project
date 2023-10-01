@@ -9,13 +9,13 @@ const errorMongooseHandler = require("../helpers/errorMongooseHandler");
 //   "Other/Unknown", "Punch / Party Drink", "Shake", "Shot", "Soft Drink"];
 
 const validateIngredients = (value, helpers) => {
-  console.log('joi custom', value);
+ // console.log('joi custom', value);
   const test = JSON.parse(value);
-  console.log(test);
+ // console.log(test);
   test.map(item => {
-    console.log('item', item);
+  //  console.log('item', item);
     if (item.title || item.measure || item.ingredientId) {
-      console.log('item IF', item.title);
+   //   console.log('item IF', item.title);
        return helpers.error('any.invalid')
     }
     return value;
