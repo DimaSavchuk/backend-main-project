@@ -19,6 +19,6 @@ router.post("/favorite/add", auth, isValidIdBody, errorHandler(drinks.addFavorit
 router.delete("/favorite/remove", auth, isValidIdBody, errorHandler(drinks.removeFavoriteRecipe));
 
 router.get("/homepage", auth, errorHandler(drinks.getRecipesForHomePage));
-router.get("/:recipeId", auth, isValidId, errorHandler(drinks.getRecipeById));
+router.get("/:recipeId", auth,  errorHandler(drinks.getRecipeById));
 
 module.exports = router;

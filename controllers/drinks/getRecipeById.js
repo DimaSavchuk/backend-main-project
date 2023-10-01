@@ -4,6 +4,8 @@ const HttpError = require("../../helpers/HttpError");
 
 const getRecipeById = async (req, res) => {
   const { adult } = req.user;
+  
+console.log('getRecipeById', req.params.recipeId);
 
   let getByCondition = { alcoholic: "Non alcoholic" };
   if (adult) {
