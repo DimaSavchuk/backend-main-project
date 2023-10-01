@@ -889,7 +889,7 @@
           },
           "isBirthday": {
             "type": "string",
-            "description": "was the user’s 18th birthday",
+            "description": "User was 18th birthday",
             "example": "false"
           }
         },

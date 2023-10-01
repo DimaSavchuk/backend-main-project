@@ -29,6 +29,12 @@ const login = async (req, res) => {
     if (age >= 18) {
       await UserModel.findByIdAndUpdate(user._id, { adult: true });
     }
+  }
+
+  if (user.birthDate) {
+    const currentDate = new Date();
+    const birthDate = new Date(user.birthDate * 1000);
+
     isBirthday =
       currentDate.getDate() === birthDate.getDate() &&
       currentDate.getMonth() === birthDate.getMonth();
