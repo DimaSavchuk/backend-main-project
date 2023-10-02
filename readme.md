@@ -2,15 +2,15 @@
 
 # DRINK-MASTER-Backend
 
-Серверна складова проекту "DRINK-MASTER" відповідає за зберігання, обробку і надання інформації про напої та користувачів.
+Серверна складова проекту "DRINK-MASTER" відповідає за зберігання, обробку і надання інформації про напої та користувачів. / The server component of the DRINK-MASTER project is responsible for storing, processing and providing information about drinks and users.
 
-## Встановлення та запуск
-* Переконайся, що на комп'ютері встановлена LTS-версія Node.js та MongoDB.
-* Встановіть базові залежності проекту командою ```npm install```
-* Створіть базу даних MongoDB та налаштуйте налаштуйте її.
-* Створіть файл ```env.``` у кореневій папці проекту та налаштуйте його:
+## Встановлення та запуск / Get it up and running
+* Переконайся, що на комп'ютері встановлена LTS-версія Node.js та MongoDB. / Make sure you have the LTS version of Node.js and MongoDB installed on your computer.
+* Встановіть базові залежності проекту командою ```npm install``` / Install the basic project dependencies with the command ```npm install```
+* Створіть базу даних MongoDB та налаштуйте налаштуйте її. / Create a MongoDB database and configure it.
+* Створіть файл ```env.``` у кореневій папці проекту та налаштуйте його / Create the ```env.``` file in the project root folder and configure it: 
 ```    
-Приклад налаштування
+Приклад налаштування / Example of setting up
 
 DB_HOST=
 SECRET_KEY=
@@ -19,11 +19,11 @@ CLOUD_NAME=
 CLOUD_API_KEY=
 CLOUD_API_SECRET=
 ```
-* Запустіть локальний сервер за допомогою команди ``` npm run start:dev```
-* Перевірити роботу запитів ви можете за допомогою `Postman`, для перевірки запитів
+* Запустіть локальний сервер за допомогою команди ``` npm run start:dev``` / Start the local server using the command ```npm run start:dev```
+* Перевірити роботу запитів ви можете за допомогою `Postman`, для перевірки запитів / You can check the operation of requests using `Postman`, to check requests
 
 ## Документація
 
-Ознайомитись із документацією ви можете перейшовши по [посиланню ](https://rest-api-drink-master.onrender.com/api-docs/)
+Ознайомитись із документацією ви можете перейшовши по [посиланню ](https://rest-api-drink-master.onrender.com/api-docs/) / You can get acquainted with the documentation by following [link](https://rest-api-drink-master.onrender.com/api-docs/)
 
 
