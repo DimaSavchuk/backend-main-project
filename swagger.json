@@ -339,7 +339,7 @@
         }
       }
     },
-    
+
     "/drinks/mainpage": {
       "get": {
         "tags": ["Drinks"],
@@ -1497,6 +1497,7 @@
         "example": {
           "code": 201,
           "message": "success",
+          "firstRecipe": "false",
           "data": {
             "drink": "My drink1",
             "tags": "super drink, alcoholic",
@@ -1598,6 +1599,7 @@
         "example": {
           "code": 200,
           "message": "Success operation",
+          "firstFavorite": "true",
           "data": [
             {
               "_id": "639b6de9ff77d221f190c51f",
