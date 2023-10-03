@@ -1387,10 +1387,9 @@
             "description": "User's coctail photo file"
           },
           "ingredients": {
-            "type": "string",
-            "format": "JSON",
-            "description": "Масив об'єктів інгрідієнтів коктелю у форматі JSON",
-            "example": "[{'title' : 'Strawberry schnapps', 'measure':'10 oz.', 'ingredientId':'64aebb7f82d96cc69e0eb4a9'}]"
+            "type": "json",
+            "description": "Масив об'єктів інгрідієнтів коктелю",
+            "example": [{"title" : "Strawberry schnapps", "measure":"0 oz.", "ingredientId":"64aebb7f82d96cc69e0eb4a9"}]
           },
           "shortDescription": {
             "type": "string",
